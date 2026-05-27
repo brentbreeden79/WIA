@@ -109,6 +109,7 @@ fetch('data/settings.json')
       'Facebook':  settings.facebook_url,
       'Instagram': settings.instagram_url,
       'YouTube':   settings.youtube_url,
+      'Twitter/X': settings.twitter_url,
     };
     document.querySelectorAll('.social-link[aria-label]').forEach(link => {
       const url = map[link.getAttribute('aria-label')];
