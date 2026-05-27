@@ -108,7 +108,7 @@ fetch('data/settings.json')
     const map = {
       'Facebook':  settings.facebook_url,
       'Instagram': settings.instagram_url,
-      'LinkedIn':  settings.linkedin_url,
+      'YouTube':   settings.youtube_url,
     };
     document.querySelectorAll('.social-link[aria-label]').forEach(link => {
       const url = map[link.getAttribute('aria-label')];

@@ -83,7 +83,7 @@ collections:
             widget: string
           - { name: facebook_url,        label: "Facebook URL",          widget: string, required: false }
           - { name: instagram_url,       label: "Instagram URL",         widget: string, required: false }
-          - { name: linkedin_url,        label: "LinkedIn URL",          widget: string, required: false }
+          - { name: youtube_url,         label: "YouTube URL",           widget: string, required: false }
           - { name: giad_goal,           label: "Girls in Aviation Day Fundraising Goal ($)", widget: number }
           - { name: giad_raised,         label: "Amount Raised So Far ($)", widget: number }
           - { name: chapter_dues,        label: "Local Chapter Dues ($/year)", widget: number }
