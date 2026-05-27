@@ -65,7 +65,7 @@ function showToast(msg, icon = '✓') {
   setTimeout(() => toast.classList.remove('show'), 4000);
 }
 
-// Generic form handler
+// Generic form handler — posts to Netlify Forms
 function handleForm(formId, successMsg) {
   const form = document.getElementById(formId);
   if (!form) return;
@@ -75,14 +75,19 @@ function handleForm(formId, successMsg) {
     const original = btn.innerHTML;
     btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Sending…';
     btn.disabled = true;
-    setTimeout(() => {
-      btn.innerHTML = original;
-      btn.disabled = false;
-      form.reset();
-      showToast(successMsg);
-      const alert = document.getElementById(formId + '-success');
-      if (alert) { alert.classList.add('show'); setTimeout(() => alert.classList.remove('show'), 5000); }
-    }, 1400);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+      .then(() => {
+        form.reset();
+        showToast(successMsg);
+        const alert = document.getElementById(formId + '-success');
+        if (alert) { alert.classList.add('show'); setTimeout(() => alert.classList.remove('show'), 5000); }
+      })
+      .catch(() => showToast('Something went wrong — please email us directly.', '!'))
+      .finally(() => { btn.innerHTML = original; btn.disabled = false; });
   });
 }
 

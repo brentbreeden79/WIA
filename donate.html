@@ -242,7 +242,8 @@
         <h2>Make a Donation</h2>
         <p style="color:var(--gray-600); margin-bottom:1.5rem;">Your contribution supports Girls in Aviation Day and helps fund chapter programs throughout the year. WAI-CRC is a nonprofit organization — your donation may be tax deductible.</p>
 
-        <form id="donate-form" novalidate>
+        <form id="donate-form" name="donate-form" data-netlify="true" novalidate>
+          <input type="hidden" name="form-name" value="donate-form">
           <div class="form-group">
             <label class="form-label">Donation Amount</label>
             <div class="amount-grid" id="amount-grid">
