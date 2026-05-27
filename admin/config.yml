@@ -1,0 +1,90 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+# Editor preview disabled for simplicity
+show_preview_links: false
+
+collections:
+
+  # ── NEWS & ANNOUNCEMENTS ──────────────────────────────────────
+  - name: news
+    label: News & Announcements
+    label_singular: Post
+    description: >
+      Add, edit, or delete news posts and announcements.
+      Changes appear on the News page automatically.
+    file: data/news.json
+    fields:
+      - name: items
+        label: Posts
+        widget: list
+        summary: "{{fields.title}} ({{fields.date}})"
+        fields:
+          - { name: id,       label: "ID (no spaces, e.g. my-post-title)", widget: string }
+          - { name: title,    label: Title,    widget: string }
+          - { name: date,     label: Date,     widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+          - name: category
+            label: Category
+            widget: select
+            options: [Announcement, Event Recap, Scholarships, Aviation News, Member Spotlight]
+          - { name: author,   label: Author,   widget: string,   default: "WAI-CRC Staff" }
+          - { name: excerpt,  label: "Short Excerpt (shown in cards)", widget: text }
+          - { name: body,     label: "Full Article Body (Markdown supported)", widget: markdown }
+
+  # ── EVENTS ───────────────────────────────────────────────────
+  - name: events
+    label: Events
+    label_singular: Event
+    description: >
+      Manage upcoming chapter events. These appear on the News page
+      sidebar and on the Home page. Dates should be in YYYY-MM-DD format.
+    file: data/events.json
+    fields:
+      - name: items
+        label: Events
+        widget: list
+        summary: "{{fields.title}} — {{fields.date}}"
+        fields:
+          - { name: id,          label: "ID (no spaces)",    widget: string }
+          - { name: title,       label: Event Title,         widget: string }
+          - { name: date,        label: Date,                widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+          - { name: time,        label: "Time (e.g. 6:30 PM)", widget: string }
+          - { name: location,    label: Location,            widget: string }
+          - { name: description, label: Description,         widget: text }
+          - name: type
+            label: Event Type
+            widget: select
+            options: [Meeting, Special Event, Fly-In, Airshow, Webinar, Other]
+
+  # ── SITE SETTINGS ─────────────────────────────────────────────
+  - name: settings
+    label: Site Settings
+    description: >
+      Global site settings — contact info, Google Calendar ID,
+      social media links, and fundraising goal.
+    files:
+      - name: general
+        label: General Settings
+        file: data/settings.json
+        fields:
+          - { name: site_title,          label: Site Title,              widget: string }
+          - { name: tagline,             label: Tagline,                 widget: string }
+          - { name: contact_email,       label: Contact Email,           widget: string }
+          - name: google_calendar_id
+            label: "Google Calendar ID"
+            hint: >
+              Found in Google Calendar → Settings → your calendar →
+              scroll to 'Integrate calendar'. Looks like:
+              abc123@group.calendar.google.com
+            widget: string
+          - { name: facebook_url,        label: "Facebook URL",          widget: string, required: false }
+          - { name: instagram_url,       label: "Instagram URL",         widget: string, required: false }
+          - { name: linkedin_url,        label: "LinkedIn URL",          widget: string, required: false }
+          - { name: giad_goal,           label: "Girls in Aviation Day Fundraising Goal ($)", widget: number }
+          - { name: giad_raised,         label: "Amount Raised So Far ($)", widget: number }
+          - { name: chapter_dues,        label: "Local Chapter Dues ($/year)", widget: number }
+          - { name: meeting_schedule,    label: "Meeting Schedule Description", widget: string }

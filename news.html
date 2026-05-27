@@ -36,12 +36,13 @@
     }
     .news-article-header .card-tag { background: rgba(200,146,26,0.2); color: var(--gold-light); position: relative; z-index: 1; }
     .news-article-header h2 { color: var(--white); font-size: 1.5rem; position: relative; z-index: 1; }
-    .news-article-meta { display: flex; gap: 1.5rem; margin-top: 0.75rem; font-size: 0.85rem; color: rgba(255,255,255,0.65); position: relative; z-index: 1; }
+    .news-article-meta { display: flex; gap: 1.5rem; margin-top: 0.75rem; font-size: 0.85rem; color: rgba(255,255,255,0.65); position: relative; z-index: 1; flex-wrap: wrap; }
     .news-article-body { padding: 2rem; }
     .news-article-body p { color: var(--gray-600); margin-bottom: 1rem; }
     .news-article-body h3 { color: var(--navy-dark); margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
     .news-article-body ul { list-style: disc; padding-left: 1.5rem; }
     .news-article-body li { color: var(--gray-600); margin-bottom: 0.35rem; font-size: 0.95rem; }
+    .news-article-body strong { color: var(--navy-dark); }
 
     .news-sidebar-widget {
       background: var(--white);
@@ -105,6 +106,68 @@
       background: var(--navy);
       color: var(--white);
     }
+
+    /* Calendar embed */
+    .calendar-section {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .calendar-header {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .calendar-header h3 { color: var(--white); margin: 0; font-size: 1.25rem; }
+    .calendar-header p { color: rgba(255,255,255,0.7); font-size: 0.875rem; margin: 0; }
+    .calendar-embed {
+      width: 100%;
+      height: 500px;
+      border: none;
+      display: block;
+    }
+    .calendar-placeholder {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--gray-100);
+      padding: 2rem;
+      text-align: center;
+    }
+    .calendar-placeholder svg { color: var(--gray-400); }
+    .calendar-placeholder h4 { color: var(--navy-dark); }
+    .calendar-placeholder p { color: var(--gray-600); font-size: 0.9rem; max-width: 400px; }
+
+    /* Loading skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: var(--radius);
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skeleton-article {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .skeleton-header { height: 120px; }
+    .skeleton-body { padding: 2rem; }
+    .skeleton-line { height: 14px; margin-bottom: 0.75rem; }
+    .skeleton-line.wide { width: 80%; }
+    .skeleton-line.medium { width: 60%; }
+    .skeleton-line.short { width: 40%; }
   </style>
 </head>
 <body>
@@ -143,138 +206,78 @@
   </div>
 </section>
 
-<!-- ===== NEWS CONTENT ===== -->
+<!-- ===== GOOGLE CALENDAR ===== -->
+<section class="section-sm" style="background: var(--off-white);">
+  <div class="container">
+    <div class="section-header text-center" style="margin-bottom:2rem;">
+      <span class="section-label">Chapter Calendar</span>
+      <h2>Upcoming Events</h2>
+      <div class="divider"></div>
+      <p style="margin-top:0.75rem; color:var(--gray-600);">All chapter events in one place. Add this calendar to your Google Calendar to get automatic updates.</p>
+    </div>
+    <div class="calendar-section fade-in">
+      <div class="calendar-header">
+        <div>
+          <h3>WAI-CRC Event Calendar</h3>
+          <p>Meetings, fly-ins, Girls in Aviation Day, and more</p>
+        </div>
+        <a id="add-to-gcal" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Add to My Calendar
+        </a>
+      </div>
+      <div id="calendar-embed-container">
+        <!-- Populated by JS once settings.json is loaded -->
+        <div class="calendar-placeholder" id="calendar-placeholder">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <h4>Calendar Loading…</h4>
+          <p>The Google Calendar will appear here once a Calendar ID is set in Site Settings. Visit <strong>/admin</strong> to configure it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWS FEED ===== -->
 <section class="section">
   <div class="container">
-    <div class="filter-bar">
-      <button class="filter-btn active">All</button>
-      <button class="filter-btn">Events</button>
-      <button class="filter-btn">Announcements</button>
-      <button class="filter-btn">Scholarships</button>
-      <button class="filter-btn">Aviation News</button>
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Announcement">Announcements</button>
+      <button class="filter-btn" data-filter="Event Recap">Event Recaps</button>
+      <button class="filter-btn" data-filter="Scholarships">Scholarships</button>
+      <button class="filter-btn" data-filter="Aviation News">Aviation News</button>
     </div>
     <div class="news-grid">
       <!-- Main feed -->
-      <div>
-        <article class="news-article fade-in">
-          <div class="news-article-header">
-            <span class="card-tag">Announcement</span>
-            <h2>Girls in Aviation Day 2025 — Save the Date!</h2>
-            <div class="news-article-meta">
-              <span>📅 May 15, 2025</span>
-              <span>✍️ WAI-CRC Staff</span>
-            </div>
+      <div id="news-feed">
+        <!-- Loading skeletons -->
+        <div class="skeleton-article">
+          <div class="skeleton skeleton-header"></div>
+          <div class="skeleton-body">
+            <div class="skeleton skeleton-line wide"></div>
+            <div class="skeleton skeleton-line medium"></div>
+            <div class="skeleton skeleton-line wide"></div>
+            <div class="skeleton skeleton-line short"></div>
           </div>
-          <div class="news-article-body">
-            <p>We are thrilled to announce that Girls in Aviation Day 2025 is coming up soon! This annual event, organized by Women In Aviation International chapters worldwide, is dedicated to inspiring young women to pursue careers in aviation and aerospace.</p>
-            <p>This year's event will feature hands-on activities, meet-and-greets with women pilots and aviation professionals, cockpit tours, and engaging STEM activities for participants of all ages.</p>
-            <h3>What to Expect</h3>
-            <ul>
-              <li>Interactive flight simulators and cockpit tours</li>
-              <li>Panel discussions with women in aviation careers</li>
-              <li>STEM and aviation activities for kids and teens</li>
-              <li>Scholarship information and mentorship sign-ups</li>
-              <li>Networking with local aviation professionals</li>
-            </ul>
-            <p style="margin-top:1rem;"><strong>Date:</strong> TBD — check back for updates or <a href="volunteer-form.html" style="color:var(--navy);">sign up for our mailing list</a>.</p>
-            <a href="donate.html" class="btn btn-primary" style="margin-top:1rem;">Learn More & Donate</a>
+        </div>
+        <div class="skeleton-article">
+          <div class="skeleton skeleton-header"></div>
+          <div class="skeleton-body">
+            <div class="skeleton skeleton-line wide"></div>
+            <div class="skeleton skeleton-line medium"></div>
           </div>
-        </article>
-
-        <article class="news-article fade-in">
-          <div class="news-article-header">
-            <span class="card-tag">Event Recap</span>
-            <h2>April Chapter Meeting Highlights</h2>
-            <div class="news-article-meta">
-              <span>📅 April 22, 2025</span>
-              <span>✍️ Chapter Secretary</span>
-            </div>
-          </div>
-          <div class="news-article-body">
-            <p>Thank you to all members who attended our April chapter meeting! It was a fantastic evening of aviation conversation, chapter updates, and great company.</p>
-            <h3>Key Topics Discussed</h3>
-            <ul>
-              <li>Planning updates for Girls in Aviation Day 2025</li>
-              <li>WAI International annual conference preview and registration info</li>
-              <li>New scholarship opportunities from WAI national</li>
-              <li>Upcoming fly-in event planning</li>
-              <li>Welcome to three new chapter members!</li>
-            </ul>
-            <p style="margin-top:1rem;">Our next monthly meeting will be in June — details to be announced on Geneva. <a href="get-involved.html" style="color:var(--navy);">Join Geneva</a> to stay in the loop.</p>
-          </div>
-        </article>
-
-        <article class="news-article fade-in">
-          <div class="news-article-header">
-            <span class="card-tag">Scholarships</span>
-            <h2>WAI Scholarship Applications Now Open</h2>
-            <div class="news-article-meta">
-              <span>📅 March 10, 2025</span>
-              <span>✍️ WAI-CRC Staff</span>
-            </div>
-          </div>
-          <div class="news-article-body">
-            <p>Women In Aviation International has opened applications for its annual scholarship program. WAI offers numerous scholarships to support members pursuing aviation education, flight training, and aerospace careers.</p>
-            <h3>How to Apply</h3>
-            <ul>
-              <li>Must be a current WAI International member</li>
-              <li>Visit <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener" style="color:var(--navy);">wai.org/scholarships</a> for the full list</li>
-              <li>Scholarships available for pilots, mechanics, ATC, and more</li>
-              <li>Applications typically due in the fall — check the WAI site for deadlines</li>
-            </ul>
-            <p style="margin-top:1rem;">Chapter members who need help with applications are encouraged to reach out — we're here to support you!</p>
-            <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:1rem;">View Scholarships at WAI.org</a>
-          </div>
-        </article>
-
-        <article class="news-article fade-in">
-          <div class="news-article-header">
-            <span class="card-tag">Aviation News</span>
-            <h2>Celebrating Women's History Month in Aviation</h2>
-            <div class="news-article-meta">
-              <span>📅 March 1, 2025</span>
-              <span>✍️ WAI-CRC Staff</span>
-            </div>
-          </div>
-          <div class="news-article-body">
-            <p>March is Women's History Month, and the WAI Capital Region Chapter is celebrating the incredible legacy of women in aviation — from Bessie Coleman and Amelia Earhart to the Women Airforce Service Pilots (WASP) and the trailblazers of today.</p>
-            <p>Did you know? The WASP (Women Airforce Service Pilots) flew over 60 million miles for the U.S. military during WWII, yet weren't granted full military status until 1977. Our <a href="wasp-map.html" style="color:var(--navy);">WASP Gravesite Map</a> honors their memory.</p>
-            <p>Share your story or nominate a woman in aviation who inspires you by <a href="volunteer-form.html" style="color:var(--navy);">contacting us</a>.</p>
-          </div>
-        </article>
+        </div>
       </div>
 
       <!-- Sidebar -->
       <div>
         <div class="news-sidebar-widget fade-in">
           <div class="sidebar-heading">Upcoming Events</div>
-          <div class="sidebar-event">
-            <div class="sidebar-date"><div class="sm">Jun</div><div class="num">14</div></div>
-            <div class="sidebar-event-info">
-              <h5>Monthly Chapter Meeting</h5>
-              <p>6:30 PM · Northern VA</p>
-            </div>
-          </div>
-          <div class="sidebar-event">
-            <div class="sidebar-date"><div class="sm">Jul</div><div class="num">19</div></div>
-            <div class="sidebar-event-info">
-              <h5>Girls in Aviation Day</h5>
-              <p>All Day · TBD Location</p>
-            </div>
-          </div>
-          <div class="sidebar-event">
-            <div class="sidebar-date"><div class="sm">Aug</div><div class="num">9</div></div>
-            <div class="sidebar-event-info">
-              <h5>Airport Fly-In</h5>
-              <p>10:00 AM · Local Airport</p>
-            </div>
-          </div>
-          <div class="sidebar-event">
-            <div class="sidebar-date"><div class="sm">Sep</div><div class="num">13</div></div>
-            <div class="sidebar-event-info">
-              <h5>Monthly Chapter Meeting</h5>
-              <p>6:30 PM · Northern VA</p>
-            </div>
+          <div id="sidebar-events">
+            <div style="height:12px; margin-bottom:12px;" class="skeleton skeleton-line wide"></div>
+            <div style="height:12px; margin-bottom:12px;" class="skeleton skeleton-line medium"></div>
+            <div style="height:12px;" class="skeleton skeleton-line wide"></div>
           </div>
         </div>
 
@@ -288,14 +291,12 @@
         <div class="news-sidebar-widget fade-in">
           <div class="sidebar-heading">Topics</div>
           <div class="tag-cloud">
-            <span class="tag tag-navy">Events</span>
-            <span class="tag tag-gold">Scholarships</span>
-            <span class="tag tag-navy">Girls in Aviation</span>
-            <span class="tag tag-gold">WASP</span>
-            <span class="tag tag-navy">Membership</span>
-            <span class="tag tag-gold">Conference</span>
-            <span class="tag tag-navy">Mentorship</span>
-            <span class="tag tag-gold">Fly-Ins</span>
+            <span class="tag tag-navy" style="cursor:pointer;" onclick="filterNews('Announcement')">Announcements</span>
+            <span class="tag tag-gold" style="cursor:pointer;" onclick="filterNews('Scholarships')">Scholarships</span>
+            <span class="tag tag-navy" style="cursor:pointer;" onclick="filterNews('all')">Girls in Aviation</span>
+            <span class="tag tag-gold" style="cursor:pointer;" onclick="filterNews('Aviation News')">Aviation News</span>
+            <span class="tag tag-navy" style="cursor:pointer;" onclick="filterNews('Event Recap')">Event Recaps</span>
+            <span class="tag tag-gold" style="cursor:pointer;" onclick="filterNews('all')">Membership</span>
           </div>
         </div>
 
@@ -366,12 +367,134 @@
 </button>
 <script src="js/main.js"></script>
 <script>
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let allNews = [];
+  let activeFilter = 'all';
+
+  // ── Simple markdown → HTML (bold, italic, lists, headings) ──
+  function mdToHtml(md) {
+    if (!md) return '';
+    return md
+      .replace(/^### (.+)$/gm, '<h4>$1</h4>')
+      .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(?!<[hup])(.+)$/gm, '<p>$1</p>')
+      .replace(/<p><\/p>/g, '');
+  }
+
+  // ── Render a news article ──
+  function renderArticle(post) {
+    const d = new Date(post.date + 'T12:00:00');
+    const dateStr = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    return `
+      <article class="news-article fade-in" data-category="${post.category}">
+        <div class="news-article-header">
+          <span class="card-tag">${post.category}</span>
+          <h2>${post.title}</h2>
+          <div class="news-article-meta">
+            <span>📅 ${dateStr}</span>
+            <span>✍️ ${post.author}</span>
+          </div>
+        </div>
+        <div class="news-article-body">${mdToHtml(post.body)}</div>
+      </article>`;
+  }
+
+  // ── Render sidebar events ──
+  function renderSidebarEvents(events) {
+    const now = new Date();
+    const upcoming = events
+      .filter(e => new Date(e.date + 'T12:00:00') >= now)
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .slice(0, 5);
+
+    if (!upcoming.length) {
+      document.getElementById('sidebar-events').innerHTML = '<p style="font-size:0.9rem;color:var(--gray-400);">No upcoming events. Check back soon!</p>';
+      return;
+    }
+    document.getElementById('sidebar-events').innerHTML = upcoming.map(e => {
+      const d = new Date(e.date + 'T12:00:00');
+      return `
+        <div class="sidebar-event">
+          <div class="sidebar-date">
+            <div class="sm">${MONTHS[d.getMonth()]}</div>
+            <div class="num">${d.getDate()}</div>
+          </div>
+          <div class="sidebar-event-info">
+            <h5>${e.title}</h5>
+            <p>${e.time} · ${e.location}</p>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  // ── Filter news feed ──
+  function filterNews(category) {
+    activeFilter = category;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === category);
     });
+    const filtered = category === 'all' ? allNews : allNews.filter(p => p.category === category);
+    const feed = document.getElementById('news-feed');
+    feed.innerHTML = filtered.length
+      ? filtered.map(renderArticle).join('')
+      : '<p style="color:var(--gray-600);padding:2rem 0;">No posts in this category yet.</p>';
+    // Re-observe fade-in elements
+    feed.querySelectorAll('.fade-in').forEach(el => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      io.observe(el);
+    });
+  }
+
+  // ── Load Google Calendar from settings ──
+  function loadCalendar(calendarId) {
+    const container = document.getElementById('calendar-embed-container');
+    const placeholder = document.getElementById('calendar-placeholder');
+    const addBtn = document.getElementById('add-to-gcal');
+
+    if (!calendarId || calendarId.includes('YOUR_GOOGLE')) {
+      // No calendar configured yet — show placeholder
+      return;
+    }
+
+    placeholder.style.display = 'none';
+    const encoded = encodeURIComponent(calendarId);
+    const iframe = document.createElement('iframe');
+    iframe.className = 'calendar-embed';
+    iframe.src = `https://calendar.google.com/calendar/embed?src=${encoded}&ctz=America%2FNew_York&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&mode=AGENDA&bgcolor=%23ffffff&color=%231B2D6B`;
+    iframe.title = 'WAI-CRC Event Calendar';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('scrolling', 'no');
+    container.appendChild(iframe);
+
+    addBtn.href = `https://calendar.google.com/calendar/r?cid=${encoded}`;
+  }
+
+  // ── Filter bar click handlers ──
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => filterNews(btn.dataset.filter));
+  });
+
+  // ── Bootstrap: load all data ──
+  Promise.all([
+    fetch('data/news.json').then(r => r.json()),
+    fetch('data/events.json').then(r => r.json()),
+    fetch('data/settings.json').then(r => r.json())
+  ]).then(([news, events, settings]) => {
+    allNews = news.sort((a, b) => new Date(b.date) - new Date(a.date));
+    filterNews('all');
+    renderSidebarEvents(events);
+    loadCalendar(settings.google_calendar_id);
+  }).catch(err => {
+    console.error('Failed to load content:', err);
+    document.getElementById('news-feed').innerHTML =
+      '<p style="color:var(--gray-600);padding:2rem 0;">Could not load news. Please try again later.</p>';
   });
 </script>
 </body>
