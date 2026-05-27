@@ -77,6 +77,29 @@ Your site will be live in about 1 minute at a URL like `random-name.netlify.app`
 
 ---
 
+## Setting Up Form Email Notifications
+
+The contact and donation forms use **Netlify Forms** — submissions are stored in your Netlify dashboard and emailed to you automatically.
+
+### Step 1 — Deploy the site to Netlify
+
+Forms are detected by Netlify on first deployment. No extra configuration is needed in the code.
+
+### Step 2 — Enable email notifications
+
+1. Go to your **Netlify dashboard** → click your site
+2. Click **"Forms"** in the left sidebar
+3. After the first real form submission, the forms (`volunteer-form`, `donate-form`) will appear here
+4. Click **"Form notifications"** → **"Add notification"** → **"Email notification"**
+5. Enter `capitalregionwai@gmail.com` as the email address
+6. Click **"Save"**
+
+Every future submission will be emailed to that address immediately.
+
+> **Free plan limit:** Netlify includes 100 form submissions per month at no cost. This is more than enough for a chapter website.
+
+---
+
 ## Setting Up the Google Calendar
 
 The News page shows an embedded Google Calendar. To connect it:
