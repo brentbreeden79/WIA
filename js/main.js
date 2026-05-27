@@ -100,3 +100,23 @@ handleForm('donate-form', 'Thank you for your generous donation!');
     }
   });
 })();
+
+// Load social links from settings.json and apply to every page
+fetch('data/settings.json')
+  .then(r => r.json())
+  .then(settings => {
+    const map = {
+      'Facebook':  settings.facebook_url,
+      'Instagram': settings.instagram_url,
+      'LinkedIn':  settings.linkedin_url,
+    };
+    document.querySelectorAll('.social-link[aria-label]').forEach(link => {
+      const url = map[link.getAttribute('aria-label')];
+      if (url) {
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+      }
+    });
+  })
+  .catch(() => {}); // silently ignore if settings not available
