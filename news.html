@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEMBERSHIP NEWS | WAI Capital Region Chapter</title>
+  <meta name="description" content="Latest news, events, and announcements from the Women In Aviation International Capital Region Chapter.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .news-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+    @media(max-width:900px) { .news-grid { grid-template-columns: 1fr; } }
+
+    .news-article {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all var(--transition);
+      margin-bottom: 1.5rem;
+    }
+    .news-article:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .news-article-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      padding: 2rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .news-article-header::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -5%;
+      width: 200px; height: 200px;
+      background: rgba(200,146,26,0.1);
+      border-radius: 50%;
+    }
+    .news-article-header .card-tag { background: rgba(200,146,26,0.2); color: var(--gold-light); position: relative; z-index: 1; }
+    .news-article-header h2 { color: var(--white); font-size: 1.5rem; position: relative; z-index: 1; }
+    .news-article-meta { display: flex; gap: 1.5rem; margin-top: 0.75rem; font-size: 0.85rem; color: rgba(255,255,255,0.65); position: relative; z-index: 1; }
+    .news-article-body { padding: 2rem; }
+    .news-article-body p { color: var(--gray-600); margin-bottom: 1rem; }
+    .news-article-body h3 { color: var(--navy-dark); margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
+    .news-article-body ul { list-style: disc; padding-left: 1.5rem; }
+    .news-article-body li { color: var(--gray-600); margin-bottom: 0.35rem; font-size: 0.95rem; }
+
+    .news-sidebar-widget {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--gold-pale);
+    }
+    .sidebar-event {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .sidebar-event:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-date {
+      background: var(--navy-dark);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 0.4rem 0.6rem;
+      text-align: center;
+      min-width: 46px;
+      flex-shrink: 0;
+    }
+    .sidebar-date .sm { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); }
+    .sidebar-date .num { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; line-height: 1.1; }
+    .sidebar-event-info h5 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .sidebar-event-info p { font-size: 0.8rem; color: var(--gray-400); margin: 0; }
+
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-600);
+      transition: all var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-badge">WAI</div>
+      <div class="logo-text">
+        <span class="logo-main">WAI-CRC</span>
+        <span class="logo-sub">Capital Region Chapter</span>
+      </div>
+    </a>
+    <ul class="navbar-nav" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="wasp-map.html">WASP Map</a></li>
+      <li><a href="volunteer-form.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-cta">Donate</a></li>
+    </ul>
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Membership News</div>
+    <h1>Membership News</h1>
+    <p>Stay up to date with the latest WAI-CRC chapter news, events, and aviation community updates.</p>
+  </div>
+</section>
+
+<!-- ===== NEWS CONTENT ===== -->
+<section class="section">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Events</button>
+      <button class="filter-btn">Announcements</button>
+      <button class="filter-btn">Scholarships</button>
+      <button class="filter-btn">Aviation News</button>
+    </div>
+    <div class="news-grid">
+      <!-- Main feed -->
+      <div>
+        <article class="news-article fade-in">
+          <div class="news-article-header">
+            <span class="card-tag">Announcement</span>
+            <h2>Girls in Aviation Day 2025 — Save the Date!</h2>
+            <div class="news-article-meta">
+              <span>📅 May 15, 2025</span>
+              <span>✍️ WAI-CRC Staff</span>
+            </div>
+          </div>
+          <div class="news-article-body">
+            <p>We are thrilled to announce that Girls in Aviation Day 2025 is coming up soon! This annual event, organized by Women In Aviation International chapters worldwide, is dedicated to inspiring young women to pursue careers in aviation and aerospace.</p>
+            <p>This year's event will feature hands-on activities, meet-and-greets with women pilots and aviation professionals, cockpit tours, and engaging STEM activities for participants of all ages.</p>
+            <h3>What to Expect</h3>
+            <ul>
+              <li>Interactive flight simulators and cockpit tours</li>
+              <li>Panel discussions with women in aviation careers</li>
+              <li>STEM and aviation activities for kids and teens</li>
+              <li>Scholarship information and mentorship sign-ups</li>
+              <li>Networking with local aviation professionals</li>
+            </ul>
+            <p style="margin-top:1rem;"><strong>Date:</strong> TBD — check back for updates or <a href="volunteer-form.html" style="color:var(--navy);">sign up for our mailing list</a>.</p>
+            <a href="donate.html" class="btn btn-primary" style="margin-top:1rem;">Learn More & Donate</a>
+          </div>
+        </article>
+
+        <article class="news-article fade-in">
+          <div class="news-article-header">
+            <span class="card-tag">Event Recap</span>
+            <h2>April Chapter Meeting Highlights</h2>
+            <div class="news-article-meta">
+              <span>📅 April 22, 2025</span>
+              <span>✍️ Chapter Secretary</span>
+            </div>
+          </div>
+          <div class="news-article-body">
+            <p>Thank you to all members who attended our April chapter meeting! It was a fantastic evening of aviation conversation, chapter updates, and great company.</p>
+            <h3>Key Topics Discussed</h3>
+            <ul>
+              <li>Planning updates for Girls in Aviation Day 2025</li>
+              <li>WAI International annual conference preview and registration info</li>
+              <li>New scholarship opportunities from WAI national</li>
+              <li>Upcoming fly-in event planning</li>
+              <li>Welcome to three new chapter members!</li>
+            </ul>
+            <p style="margin-top:1rem;">Our next monthly meeting will be in June — details to be announced on Geneva. <a href="get-involved.html" style="color:var(--navy);">Join Geneva</a> to stay in the loop.</p>
+          </div>
+        </article>
+
+        <article class="news-article fade-in">
+          <div class="news-article-header">
+            <span class="card-tag">Scholarships</span>
+            <h2>WAI Scholarship Applications Now Open</h2>
+            <div class="news-article-meta">
+              <span>📅 March 10, 2025</span>
+              <span>✍️ WAI-CRC Staff</span>
+            </div>
+          </div>
+          <div class="news-article-body">
+            <p>Women In Aviation International has opened applications for its annual scholarship program. WAI offers numerous scholarships to support members pursuing aviation education, flight training, and aerospace careers.</p>
+            <h3>How to Apply</h3>
+            <ul>
+              <li>Must be a current WAI International member</li>
+              <li>Visit <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener" style="color:var(--navy);">wai.org/scholarships</a> for the full list</li>
+              <li>Scholarships available for pilots, mechanics, ATC, and more</li>
+              <li>Applications typically due in the fall — check the WAI site for deadlines</li>
+            </ul>
+            <p style="margin-top:1rem;">Chapter members who need help with applications are encouraged to reach out — we're here to support you!</p>
+            <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:1rem;">View Scholarships at WAI.org</a>
+          </div>
+        </article>
+
+        <article class="news-article fade-in">
+          <div class="news-article-header">
+            <span class="card-tag">Aviation News</span>
+            <h2>Celebrating Women's History Month in Aviation</h2>
+            <div class="news-article-meta">
+              <span>📅 March 1, 2025</span>
+              <span>✍️ WAI-CRC Staff</span>
+            </div>
+          </div>
+          <div class="news-article-body">
+            <p>March is Women's History Month, and the WAI Capital Region Chapter is celebrating the incredible legacy of women in aviation — from Bessie Coleman and Amelia Earhart to the Women Airforce Service Pilots (WASP) and the trailblazers of today.</p>
+            <p>Did you know? The WASP (Women Airforce Service Pilots) flew over 60 million miles for the U.S. military during WWII, yet weren't granted full military status until 1977. Our <a href="wasp-map.html" style="color:var(--navy);">WASP Gravesite Map</a> honors their memory.</p>
+            <p>Share your story or nominate a woman in aviation who inspires you by <a href="volunteer-form.html" style="color:var(--navy);">contacting us</a>.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Sidebar -->
+      <div>
+        <div class="news-sidebar-widget fade-in">
+          <div class="sidebar-heading">Upcoming Events</div>
+          <div class="sidebar-event">
+            <div class="sidebar-date"><div class="sm">Jun</div><div class="num">14</div></div>
+            <div class="sidebar-event-info">
+              <h5>Monthly Chapter Meeting</h5>
+              <p>6:30 PM · Northern VA</p>
+            </div>
+          </div>
+          <div class="sidebar-event">
+            <div class="sidebar-date"><div class="sm">Jul</div><div class="num">19</div></div>
+            <div class="sidebar-event-info">
+              <h5>Girls in Aviation Day</h5>
+              <p>All Day · TBD Location</p>
+            </div>
+          </div>
+          <div class="sidebar-event">
+            <div class="sidebar-date"><div class="sm">Aug</div><div class="num">9</div></div>
+            <div class="sidebar-event-info">
+              <h5>Airport Fly-In</h5>
+              <p>10:00 AM · Local Airport</p>
+            </div>
+          </div>
+          <div class="sidebar-event">
+            <div class="sidebar-date"><div class="sm">Sep</div><div class="num">13</div></div>
+            <div class="sidebar-event-info">
+              <h5>Monthly Chapter Meeting</h5>
+              <p>6:30 PM · Northern VA</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-sidebar-widget fade-in">
+          <div class="sidebar-heading">Stay Connected</div>
+          <p style="font-size:0.9rem; color:var(--gray-600); margin-bottom:1.25rem;">Get the latest chapter news delivered to you. Join our Geneva community or sign up for email updates.</p>
+          <a href="get-involved.html" class="btn btn-primary" style="width:100%; justify-content:center; margin-bottom:0.75rem;">Join Geneva</a>
+          <a href="volunteer-form.html" class="btn btn-outline" style="width:100%; justify-content:center;">Email Updates</a>
+        </div>
+
+        <div class="news-sidebar-widget fade-in">
+          <div class="sidebar-heading">Topics</div>
+          <div class="tag-cloud">
+            <span class="tag tag-navy">Events</span>
+            <span class="tag tag-gold">Scholarships</span>
+            <span class="tag tag-navy">Girls in Aviation</span>
+            <span class="tag tag-gold">WASP</span>
+            <span class="tag tag-navy">Membership</span>
+            <span class="tag tag-gold">Conference</span>
+            <span class="tag tag-navy">Mentorship</span>
+            <span class="tag tag-gold">Fly-Ins</span>
+          </div>
+        </div>
+
+        <div class="news-sidebar-widget fade-in" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white;">
+          <div class="sidebar-heading" style="color: var(--gold-light); border-color: rgba(200,146,26,0.3);">WAI International</div>
+          <p style="font-size:0.9rem; color:rgba(255,255,255,0.75); margin-bottom:1.25rem;">Visit the WAI International website for national news, the annual conference, and scholarship opportunities.</p>
+          <a href="https://www.wai.org" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; justify-content:center;">Visit WAI.org</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="display:inline-flex;">
+          <div class="logo-badge">WAI</div>
+          <div class="logo-text">
+            <span class="logo-main" style="color:white;">WAI-CRC</span>
+            <span class="logo-sub">Capital Region Chapter</span>
+          </div>
+        </div>
+        <p>A local chapter of Women In Aviation International, serving the Northern Virginia and greater Washington D.C. area.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="news.html">Membership News</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <nav class="footer-links">
+          <a href="donate.html">Girls in Aviation Day</a>
+          <a href="wasp-map.html">WASP Gravesite Map</a>
+          <a href="volunteer-form.html">Volunteer</a>
+          <a href="donate.html">Donate</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">WAI National</div>
+        <nav class="footer-links">
+          <a href="https://www.wai.org" target="_blank" rel="noopener">WAI International</a>
+          <a href="https://www.wai.org/conferences" target="_blank" rel="noopener">Annual Conference</a>
+          <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener">Scholarships</a>
+          <a href="volunteer-form.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="js/main.js"></script>
+<script>
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

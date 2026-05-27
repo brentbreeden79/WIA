@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GET INVOLVED | WAI Capital Region Chapter</title>
+  <meta name="description" content="Join the WAI Capital Region Chapter — become a member, volunteer, and connect with fellow aviation enthusiasts in Northern Virginia.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .step-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: all var(--transition);
+    }
+    .step-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .step-number {
+      position: absolute;
+      top: -16px; left: 2rem;
+      width: 36px; height: 36px;
+      background: var(--gold);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(200,146,26,0.4);
+    }
+    .step-card h3 { margin-bottom: 0.6rem; margin-top: 0.5rem; font-size: 1.15rem; }
+    .step-card p { font-size: 0.92rem; color: var(--gray-600); }
+
+    .membership-tier {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .membership-tier:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .tier-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      padding: 1.75rem;
+      text-align: center;
+      color: var(--white);
+    }
+    .tier-header.gold-tier {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    }
+    .tier-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.8;
+      margin-bottom: 0.4rem;
+    }
+    .tier-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .tier-price sup { font-size: 1.2rem; vertical-align: top; margin-top: 0.4rem; }
+    .tier-period { font-size: 0.85rem; opacity: 0.75; margin-top: 0.3rem; }
+    .tier-body { padding: 1.75rem; }
+    .tier-features { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .tier-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--gray-600);
+    }
+    .tier-feature .check {
+      width: 20px; height: 20px;
+      background: #d1fae5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #065f46;
+    }
+    .tier-feature .check svg { width: 12px; height: 12px; }
+
+    .geneva-block {
+      background: linear-gradient(135deg, #0f1f5c, #1B2D6B);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .geneva-block h2 { color: var(--white); margin-bottom: 1rem; }
+    .geneva-block p { color: rgba(255,255,255,0.8); margin-bottom: 1.25rem; }
+    .geneva-steps { display: flex; flex-direction: column; gap: 1rem; }
+    .geneva-step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .geneva-step-num {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .geneva-step-text h4 { color: var(--white); font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .geneva-step-text p { color: rgba(255,255,255,0.7); font-size: 0.88rem; margin: 0; }
+
+    @media(max-width:768px) {
+      .geneva-block { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-badge">WAI</div>
+      <div class="logo-text">
+        <span class="logo-main">WAI-CRC</span>
+        <span class="logo-sub">Capital Region Chapter</span>
+      </div>
+    </a>
+    <ul class="navbar-nav" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="get-involved.html" class="active">Get Involved</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="wasp-map.html">WASP Map</a></li>
+      <li><a href="volunteer-form.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-cta">Donate</a></li>
+    </ul>
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Get Involved</div>
+    <h1>Get Involved</h1>
+    <p>Join our community of aviation enthusiasts and professionals in the Northern Virginia area. Membership is open to everyone who loves aviation.</p>
+  </div>
+</section>
+
+<!-- ===== WHY JOIN ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">Why Join?</span>
+      <h2>Benefits of Membership</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-3">
+      <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Local Networking</h3>
+        <p style="color:var(--gray-600); font-size:0.92rem;">Connect with fellow aviators, aerospace professionals, and aviation enthusiasts right here in the Northern Virginia and D.C. area.</p>
+      </div>
+      <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>WAI Conference Access</h3>
+        <p style="color:var(--gray-600); font-size:0.92rem;">As a WAI member, attend the world's largest aviation career conference with thousands of aviation professionals from around the globe.</p>
+      </div>
+      <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3>Scholarship Opportunities</h3>
+        <p style="color:var(--gray-600); font-size:0.92rem;">Access WAI's scholarship database and get chapter support for applying to flight training, aviation education, and career development scholarships.</p>
+      </div>
+      <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Geneva Community</h3>
+        <p style="color:var(--gray-600); font-size:0.92rem;">Join our closed, safe member platform where chapter members share news, plan events, ask questions, and stay connected between meetings.</p>
+      </div>
+      <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Chapter Events</h3>
+        <p style="color:var(--gray-600); font-size:0.92rem;">Attend monthly meetings, fly-ins, airport tours, airshows, Girls in Aviation Day, and other chapter-organized events throughout the year.</p>
+      </div>
+      <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Mentorship Program</h3>
+        <p style="color:var(--gray-600); font-size:0.92rem;">Connect with experienced aviators for one-on-one mentorship, or become a mentor yourself and help shape the next generation of pilots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW TO JOIN ===== -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">Membership</span>
+      <h2>How to Join</h2>
+      <div class="divider"></div>
+      <p style="margin-top:1rem;">Joining WAI-CRC is a two-step process — become a WAI International member, then join our local chapter.</p>
+    </div>
+    <div class="grid-3" style="margin-top:2rem; position:relative;">
+      <!-- connecting line (decorative, desktop only) -->
+      <div class="step-card fade-in">
+        <div class="step-number">1</div>
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Join WAI International</h3>
+        <p>Visit <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--navy); font-weight:600;">wai.org</a> to create a WAI International membership. Choose the membership level that works for you.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">2</div>
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Complete Chapter Application</h3>
+        <p>Fill out the WAI-CRC local chapter membership application and pay local dues of <strong>$15.00</strong> — billed annually when you initially join and each year thereafter.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">3</div>
+        <div class="icon-circle" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Welcome to the Chapter!</h3>
+        <p>Once approved, you'll receive a welcome email with instructions to join our Geneva community and details on upcoming chapter events.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="volunteer-form.html" class="btn btn-primary btn-lg">Start Your Application</a>
+      <p style="margin-top:1rem; font-size:0.9rem; color:var(--gray-600);">Questions? <a href="volunteer-form.html" style="color:var(--navy);">Contact us</a> and a chapter leader will get back to you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEMBERSHIP TIERS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">Pricing</span>
+      <h2>Membership Options</h2>
+      <div class="divider"></div>
+      <p style="margin-top:1rem;">WAI offers several membership levels nationally. Local chapter dues are $15/year for all members.</p>
+    </div>
+    <div class="grid-3" style="max-width:900px; margin:0 auto;">
+      <div class="membership-tier fade-in">
+        <div class="tier-header">
+          <div class="tier-name">WAI National</div>
+          <div class="tier-price"><sup>$</sup>65</div>
+          <div class="tier-period">per year (standard)</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-features">
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> WAI membership card</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> WAI conference discounts</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Scholarship eligibility</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> WAI Wings newsletter</div>
+          </div>
+          <a href="https://www.wai.org/join" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">Join at WAI.org</a>
+        </div>
+      </div>
+      <div class="membership-tier fade-in">
+        <div class="tier-header gold-tier">
+          <div class="tier-name">Chapter Dues</div>
+          <div class="tier-price"><sup>$</sup>15</div>
+          <div class="tier-period">per year (local)</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-features">
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Local chapter membership</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Geneva community access</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Chapter event invitations</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Mentorship program</div>
+          </div>
+          <a href="volunteer-form.html" class="btn btn-primary" style="width:100%; justify-content:center;">Apply to Chapter</a>
+        </div>
+      </div>
+      <div class="membership-tier fade-in">
+        <div class="tier-header">
+          <div class="tier-name">Student / Youth</div>
+          <div class="tier-price"><sup>$</sup>40</div>
+          <div class="tier-period">per year (WAI national)</div>
+        </div>
+        <div class="tier-body">
+          <div class="tier-features">
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Reduced national dues</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Full WAI benefits</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Scholarship priority</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> + $15 chapter dues</div>
+          </div>
+          <a href="https://www.wai.org/join" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">Join at WAI.org</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GENEVA ===== -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="geneva-block fade-in">
+      <div>
+        <span class="section-label" style="color:var(--gold-light);">Member Platform</span>
+        <h2>Connect on Geneva</h2>
+        <p>The WAI Capital Region Chapter uses <strong>Geneva</strong> as our closed, safe platform to keep in touch with members, share event announcements, and stay connected on all things WAI-CRC.</p>
+        <p>Geneva is free to use and available on iOS, Android, and desktop.</p>
+        <a href="volunteer-form.html" class="btn btn-primary" style="margin-top:0.5rem;">Request Geneva Access</a>
+      </div>
+      <div class="geneva-steps">
+        <div class="geneva-step">
+          <div class="geneva-step-num">1</div>
+          <div class="geneva-step-text">
+            <h4>Join the Chapter</h4>
+            <p>Complete your WAI International membership and pay the $15 local chapter dues.</p>
+          </div>
+        </div>
+        <div class="geneva-step">
+          <div class="geneva-step-num">2</div>
+          <div class="geneva-step-text">
+            <h4>Download Geneva</h4>
+            <p>Get the Geneva app on your phone or visit the web app. It's free for members.</p>
+          </div>
+        </div>
+        <div class="geneva-step">
+          <div class="geneva-step-num">3</div>
+          <div class="geneva-step-text">
+            <h4>Receive Your Invite</h4>
+            <p>After approval, a chapter admin will send you an invite link to our private Geneva group.</p>
+          </div>
+        </div>
+        <div class="geneva-step">
+          <div class="geneva-step-num">4</div>
+          <div class="geneva-step-text">
+            <h4>Welcome Aboard!</h4>
+            <p>Introduce yourself, explore channels, and stay current on all chapter news and events.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOLUNTEER CTA ===== -->
+<section class="section">
+  <div class="container">
+    <div class="highlight-box">
+      <div class="grid-2" style="align-items:center; gap:3rem;">
+        <div>
+          <span class="section-label" style="color:var(--gold-light);">Give Back</span>
+          <h2>Volunteer With WAI-CRC</h2>
+          <p style="margin:1rem 0 1.75rem;">Our chapter runs on the energy of passionate volunteers. From event planning to mentoring students at Girls in Aviation Day — every hour you give makes a difference.</p>
+          <a href="volunteer-form.html" class="btn btn-primary">Sign Up to Volunteer</a>
+        </div>
+        <div>
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <div class="icon-box" style="background:rgba(255,255,255,0.08); padding:1rem; border-radius:var(--radius); gap:1rem;">
+              <div class="icon-circle" style="background:rgba(200,146,26,0.2); color:var(--gold-light);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div><h4 style="color:white; font-size:0.95rem;">Girls in Aviation Day</h4><p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin:0;">Help inspire the next generation of female pilots.</p></div>
+            </div>
+            <div class="icon-box" style="background:rgba(255,255,255,0.08); padding:1rem; border-radius:var(--radius); gap:1rem;">
+              <div class="icon-circle" style="background:rgba(200,146,26,0.2); color:var(--gold-light);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div><h4 style="color:white; font-size:0.95rem;">Event Planning</h4><p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin:0;">Help organize fly-ins, meetings, and chapter activities.</p></div>
+            </div>
+            <div class="icon-box" style="background:rgba(255,255,255,0.08); padding:1rem; border-radius:var(--radius); gap:1rem;">
+              <div class="icon-circle" style="background:rgba(200,146,26,0.2); color:var(--gold-light);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div><h4 style="color:white; font-size:0.95rem;">Mentorship</h4><p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin:0;">Share your expertise with aspiring aviators.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="display:inline-flex;">
+          <div class="logo-badge">WAI</div>
+          <div class="logo-text">
+            <span class="logo-main" style="color:white;">WAI-CRC</span>
+            <span class="logo-sub">Capital Region Chapter</span>
+          </div>
+        </div>
+        <p>A local chapter of Women In Aviation International, serving the Northern Virginia and greater Washington D.C. area.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="news.html">Membership News</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <nav class="footer-links">
+          <a href="donate.html">Girls in Aviation Day</a>
+          <a href="wasp-map.html">WASP Gravesite Map</a>
+          <a href="volunteer-form.html">Volunteer</a>
+          <a href="donate.html">Donate</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">WAI National</div>
+        <nav class="footer-links">
+          <a href="https://www.wai.org" target="_blank" rel="noopener">WAI International</a>
+          <a href="https://www.wai.org/conferences" target="_blank" rel="noopener">Annual Conference</a>
+          <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener">Scholarships</a>
+          <a href="volunteer-form.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="js/main.js"></script>
+</body>
+</html>

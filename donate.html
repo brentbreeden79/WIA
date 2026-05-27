@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIRLS IN AVIATION DAY | WAI Capital Region Chapter</title>
+  <meta name="description" content="Support Girls in Aviation Day and the WAI Capital Region Chapter's mission to inspire the next generation of female aviators.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .giad-hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 40%, #8b2fc9 100%);
+      padding: 8rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .giad-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 40%, rgba(200,146,26,0.15) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .giad-hero-content { position: relative; z-index: 1; }
+    .giad-hero h1 { color: var(--white); margin-bottom: 1rem; }
+    .giad-hero p { color: rgba(255,255,255,0.85); font-size: 1.15rem; max-width: 600px; }
+
+    .donation-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media(max-width:900px) { .donation-layout { grid-template-columns: 1fr; } }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    @media(max-width:500px) { .amount-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .amount-btn {
+      padding: 0.875rem;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius);
+      background: var(--white);
+      cursor: pointer;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      transition: all var(--transition);
+    }
+    .amount-btn:hover { border-color: var(--navy); background: rgba(27,45,107,0.04); }
+    .amount-btn.selected { border-color: var(--gold); background: var(--gold-pale); color: var(--gold); }
+    .amount-sub { display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--gray-400); margin-top: 0.2rem; }
+    .amount-btn.selected .amount-sub { color: var(--gold); }
+
+    .impact-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: all var(--transition);
+    }
+    .impact-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .impact-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 70px;
+      flex-shrink: 0;
+    }
+    .impact-card h4 { margin-bottom: 0.3rem; font-size: 1rem; }
+    .impact-card p { font-size: 0.88rem; color: var(--gray-600); margin: 0; }
+
+    .donate-sidebar {
+      position: sticky;
+      top: 90px;
+    }
+    .progress-bar-wrap {
+      background: var(--gray-200);
+      border-radius: 100px;
+      height: 10px;
+      overflow: hidden;
+      margin: 0.75rem 0 0.5rem;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 100px;
+      transition: width 1.5s ease;
+    }
+
+    .activity-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .activity-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--gold-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .activity-icon svg { width: 18px; height: 18px; }
+    .activity-item h5 { font-size: 0.9rem; margin-bottom: 0.15rem; }
+    .activity-item p { font-size: 0.82rem; color: var(--gray-400); margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-badge">WAI</div>
+      <div class="logo-text">
+        <span class="logo-main">WAI-CRC</span>
+        <span class="logo-sub">Capital Region Chapter</span>
+      </div>
+    </a>
+    <ul class="navbar-nav" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="wasp-map.html">WASP Map</a></li>
+      <li><a href="volunteer-form.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-cta active">Donate</a></li>
+    </ul>
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="giad-hero">
+  <div class="container giad-hero-content">
+    <div class="breadcrumb" style="color:rgba(255,255,255,0.6); font-size:0.875rem; display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+      <a href="index.html" style="color:var(--gold-light);">Home</a> <span>/</span> Girls in Aviation Day
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:0.6rem; background:rgba(200,146,26,0.15); border:1px solid rgba(200,146,26,0.3); border-radius:100px; padding:0.4rem 1rem; font-size:0.8rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-light); margin-bottom:1.25rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Annual Event
+    </div>
+    <h1>Girls in Aviation Day</h1>
+    <p>Inspiring the next generation of female aviators through hands-on experiences, mentorship, and the powerful stories of women who fly.</p>
+    <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+      <a href="#donate" class="btn btn-primary btn-lg">Donate Now</a>
+      <a href="volunteer-form.html" class="btn btn-secondary btn-lg">Volunteer</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT GIAD ===== -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items:center; gap:4rem;">
+      <div class="fade-in">
+        <span class="section-label">About the Event</span>
+        <h2>What is Girls in Aviation Day?</h2>
+        <div class="divider"></div>
+        <p style="margin-top:1.25rem; color:var(--gray-600);">Girls in Aviation Day (GIAD) is an annual international event organized by Women In Aviation International chapters around the world. Held in the fall, the event is designed to inspire girls ages 8–17 to explore careers in aviation and aerospace.</p>
+        <p style="margin-top:1rem; color:var(--gray-600);">At the WAI Capital Region Chapter's GIAD, young participants get rare, up-close access to aircraft, simulators, and the amazing women and men who work in aviation every day.</p>
+        <p style="margin-top:1rem; color:var(--gray-600);">The event is <strong>free for participants</strong> — made possible by the generous donations of supporters like you and the dedication of our volunteers.</p>
+        <a href="volunteer-form.html" class="btn btn-outline" style="margin-top:1.75rem;">Volunteer at GIAD</a>
+      </div>
+      <div class="fade-in">
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div class="activity-item" style="padding:1rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); border-bottom:none;">
+            <div class="activity-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.63 12 19.79 19.79 0 0 1 1.55 3.5 2 2 0 0 1 3.53 1.33h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.94-1.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><h5>Flight Simulator Experience</h5><p>Try your hand at the controls in a real flight simulator.</p></div>
+          </div>
+          <div class="activity-item" style="padding:1rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); border-bottom:none;">
+            <div class="activity-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div><h5>Cockpit Tours</h5><p>Step inside real aircraft for up-close cockpit tours with pilots.</p></div>
+          </div>
+          <div class="activity-item" style="padding:1rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); border-bottom:none;">
+            <div class="activity-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><h5>Women in Aviation Panels</h5><p>Hear from women pilots, engineers, and ATC professionals.</p></div>
+          </div>
+          <div class="activity-item" style="padding:1rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); border-bottom:none;">
+            <div class="activity-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><h5>STEM Activities</h5><p>Hands-on science, technology, engineering, and math challenges.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPACT ===== -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">Your Impact</span>
+      <h2>Every Dollar Takes a Girl Higher</h2>
+      <div class="divider"></div>
+      <p style="margin-top:1rem;">Your donation directly funds activities, materials, and access that make GIAD possible for every participant — free of charge.</p>
+    </div>
+    <div class="grid-4">
+      <div class="impact-card fade-in">
+        <div class="impact-amount">$15</div>
+        <div><h4>STEM Kit</h4><p>Funds one participant's take-home aviation STEM activity kit.</p></div>
+      </div>
+      <div class="impact-card fade-in">
+        <div class="impact-amount">$25</div>
+        <div><h4>Simulator Time</h4><p>Provides one girl with a full flight simulator session.</p></div>
+      </div>
+      <div class="impact-card fade-in">
+        <div class="impact-amount">$50</div>
+        <div><h4>Materials & Supplies</h4><p>Covers event materials, name badges, and program booklets for participants.</p></div>
+      </div>
+      <div class="impact-card fade-in">
+        <div class="impact-amount">$100</div>
+        <div><h4>Sponsor a Participant</h4><p>Fully covers the cost of one participant's entire GIAD experience.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DONATE FORM ===== -->
+<section class="section" id="donate">
+  <div class="container">
+    <div class="donation-layout">
+      <!-- Form -->
+      <div class="form-card fade-in">
+        <span class="section-label">Support the Mission</span>
+        <h2>Make a Donation</h2>
+        <p style="color:var(--gray-600); margin-bottom:1.5rem;">Your contribution supports Girls in Aviation Day and helps fund chapter programs throughout the year. WAI-CRC is a nonprofit organization — your donation may be tax deductible.</p>
+
+        <form id="donate-form" novalidate>
+          <div class="form-group">
+            <label class="form-label">Donation Amount</label>
+            <div class="amount-grid" id="amount-grid">
+              <button type="button" class="amount-btn" data-amount="15">$15<span class="amount-sub">STEM Kit</span></button>
+              <button type="button" class="amount-btn selected" data-amount="25">$25<span class="amount-sub">Simulator</span></button>
+              <button type="button" class="amount-btn" data-amount="50">$50<span class="amount-sub">Materials</span></button>
+              <button type="button" class="amount-btn" data-amount="100">$100<span class="amount-sub">Sponsor</span></button>
+              <button type="button" class="amount-btn" data-amount="250">$250<span class="amount-sub">Champion</span></button>
+              <button type="button" class="amount-btn" data-amount="custom">Other<span class="amount-sub">Custom</span></button>
+            </div>
+            <div id="custom-amount-wrap" style="display:none;">
+              <input type="number" id="custom-amount" class="form-control" placeholder="Enter custom amount ($)" min="1">
+            </div>
+            <input type="hidden" id="donation-amount" name="donation_amount" value="25">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Donation Frequency</label>
+            <div style="display:flex; gap:1rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="radio" name="frequency" value="one-time" checked style="accent-color:var(--navy);"> One-time
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="radio" name="frequency" value="monthly" style="accent-color:var(--navy);"> Monthly
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="radio" name="frequency" value="annual" style="accent-color:var(--navy);"> Annual
+              </label>
+            </div>
+          </div>
+
+          <div style="height:1px; background:var(--gray-100); margin:1.5rem 0;"></div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="donor-first">First Name <span style="color:#e53e3e;">*</span></label>
+              <input type="text" id="donor-first" name="first_name" class="form-control" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="donor-last">Last Name <span style="color:#e53e3e;">*</span></label>
+              <input type="text" id="donor-last" name="last_name" class="form-control" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="donor-email">Email Address <span style="color:#e53e3e;">*</span></label>
+            <input type="email" id="donor-email" name="email" class="form-control" placeholder="jane@example.com" required>
+            <span class="form-hint">You'll receive a donation confirmation and receipt at this address.</span>
+          </div>
+
+          <div style="height:1px; background:var(--gray-100); margin:1.5rem 0;"></div>
+          <p style="font-size:0.85rem; color:var(--gray-400); margin-bottom:1.25rem;">Payment processing — for demonstration purposes. To set up live payment processing, integrate Stripe, PayPal, or your preferred processor.</p>
+
+          <div class="form-row">
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label" for="card-number">Card Number</label>
+              <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="card-expiry">Expiry Date</label>
+              <input type="text" id="card-expiry" class="form-control" placeholder="MM / YY" maxlength="7">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="card-cvv">CVV</label>
+              <input type="text" id="card-cvv" class="form-control" placeholder="123" maxlength="4">
+            </div>
+          </div>
+
+          <div class="form-check" style="margin-bottom:1.5rem;">
+            <input type="checkbox" id="anonymous" name="anonymous">
+            <label for="anonymous">Make my donation anonymous</label>
+          </div>
+
+          <div id="donate-form-success" class="alert alert-success">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Thank you for your generous donation! A receipt has been sent to your email.
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Donate <span id="donate-btn-amount">$25</span>
+          </button>
+          <p style="font-size:0.8rem; color:var(--gray-400); text-align:center; margin-top:0.75rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure donation. WAI-CRC is a nonprofit chapter of Women In Aviation International.
+          </p>
+        </form>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="donate-sidebar">
+        <div class="form-card fade-in" style="margin-bottom:1.5rem;">
+          <div class="section-label">2025 Fundraising Goal</div>
+          <div style="margin:0.75rem 0;">
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+              <span style="font-weight:600; color:var(--navy-dark);">$2,340 raised</span>
+              <span style="color:var(--gray-400);">Goal: $5,000</span>
+            </div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="progress-fill" style="width:0"></div>
+            </div>
+            <p style="font-size:0.82rem; color:var(--gray-400); margin:0.25rem 0 0;">47% of our goal — help us get there!</p>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.25rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+              <span style="color:var(--gray-600);">Participants supported</span>
+              <strong style="color:var(--navy);">~120</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+              <span style="color:var(--gray-600);">Donors this year</span>
+              <strong style="color:var(--navy);">34</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+              <span style="color:var(--gray-600);">Average donation</span>
+              <strong style="color:var(--navy);">$68.82</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card fade-in" style="background:linear-gradient(135deg, var(--navy-dark), var(--navy)); margin-bottom:1.5rem;">
+          <div class="section-label" style="color:var(--gold-light);">Other Ways to Give</div>
+          <div style="display:flex; flex-direction:column; gap:1rem; margin-top:0.75rem;">
+            <div style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <div style="width:36px; height:36px; background:rgba(200,146,26,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold-light);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div><p style="color:white; font-size:0.9rem; font-weight:600; margin-bottom:0.15rem;">Volunteer Your Time</p><p style="color:rgba(255,255,255,0.65); font-size:0.85rem; margin:0;">Help at GIAD or other chapter events.</p></div>
+            </div>
+            <div style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <div style="width:36px; height:36px; background:rgba(200,146,26,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold-light);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              </div>
+              <div><p style="color:white; font-size:0.9rem; font-weight:600; margin-bottom:0.15rem;">Share Our Mission</p><p style="color:rgba(255,255,255,0.65); font-size:0.85rem; margin:0;">Spread the word on social media.</p></div>
+            </div>
+            <div style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <div style="width:36px; height:36px; background:rgba(200,146,26,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold-light);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div><p style="color:white; font-size:0.9rem; font-weight:600; margin-bottom:0.15rem;">Become a Member</p><p style="color:rgba(255,255,255,0.65); font-size:0.85rem; margin:0;">Your dues directly support chapter programs.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout fade-in">
+          <p><strong>Corporate Sponsorships:</strong> Is your company interested in sponsoring Girls in Aviation Day or a chapter event? <a href="volunteer-form.html" style="color:var(--navy);">Contact us</a> for sponsorship packages.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="display:inline-flex;">
+          <div class="logo-badge">WAI</div>
+          <div class="logo-text">
+            <span class="logo-main" style="color:white;">WAI-CRC</span>
+            <span class="logo-sub">Capital Region Chapter</span>
+          </div>
+        </div>
+        <p>A local chapter of Women In Aviation International, serving the Northern Virginia and greater Washington D.C. area.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="news.html">Membership News</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <nav class="footer-links">
+          <a href="donate.html">Girls in Aviation Day</a>
+          <a href="wasp-map.html">WASP Gravesite Map</a>
+          <a href="volunteer-form.html">Volunteer</a>
+          <a href="donate.html">Donate</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">WAI National</div>
+        <nav class="footer-links">
+          <a href="https://www.wai.org" target="_blank" rel="noopener">WAI International</a>
+          <a href="https://www.wai.org/conferences" target="_blank" rel="noopener">Annual Conference</a>
+          <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener">Scholarships</a>
+          <a href="volunteer-form.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="js/main.js"></script>
+<script>
+  // Donation amount selector
+  const amountBtns = document.querySelectorAll('.amount-btn');
+  const donationInput = document.getElementById('donation-amount');
+  const donateBtnAmt = document.getElementById('donate-btn-amount');
+  const customWrap = document.getElementById('custom-amount-wrap');
+  const customInput = document.getElementById('custom-amount');
+
+  amountBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      amountBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const val = btn.dataset.amount;
+      if (val === 'custom') {
+        customWrap.style.display = 'block';
+        donationInput.value = '';
+        donateBtnAmt.textContent = '';
+        customInput.focus();
+      } else {
+        customWrap.style.display = 'none';
+        donationInput.value = val;
+        donateBtnAmt.textContent = '$' + val;
+      }
+    });
+  });
+
+  customInput.addEventListener('input', () => {
+    const v = customInput.value;
+    donationInput.value = v;
+    donateBtnAmt.textContent = v ? '$' + v : '';
+  });
+
+  // Format card number
+  document.getElementById('card-number').addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim().substring(0, 19);
+  });
+  document.getElementById('card-expiry').addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length >= 2) v = v.substring(0, 2) + ' / ' + v.substring(2, 4);
+    e.target.value = v;
+  });
+
+  // Animate progress bar on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const fill = document.getElementById('progress-fill');
+      if (fill) fill.style.width = '47%';
+    }, 400);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOME | WAI Capital Region Chapter</title>
+  <meta name="description" content="Women In Aviation International – Capital Region Chapter. Empowering women and men in aviation through networking, education, mentoring, and scholarships in the Northern Virginia area.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, #2a4095 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 70% 50%, rgba(200,146,26,0.08) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Decorative plane silhouette */
+    .hero-plane {
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(340px, 45vw, 620px);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 9rem 0 6rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(200,146,26,0.15);
+      border: 1px solid rgba(200,146,26,0.3);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      max-width: 680px;
+    }
+    .hero h1 span { color: var(--gold-light); }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2.5rem;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===== Mission Band ===== */
+    .mission-band {
+      background: var(--off-white);
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .mission-band p {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      max-width: none;
+    }
+
+    /* ===== About Strip ===== */
+    .about-strip {
+      background: var(--white);
+    }
+    .about-img-block {
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: var(--radius-lg);
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(200,146,26,0.2), transparent 60%);
+    }
+    .about-img-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+    }
+    .about-img-inner svg { opacity: 0.3; }
+    .about-content { display: flex; flex-direction: column; justify-content: center; }
+    .about-content p { color: var(--gray-600); margin-bottom: 1rem; }
+
+    /* ===== Events ===== */
+    .events-section { background: var(--gray-100); }
+    .event-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .event-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .event-date-block {
+      background: var(--navy-dark);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+    .event-date-block .month {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+    }
+    .event-date-block .day {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .event-info h4 { margin-bottom: 0.35rem; }
+    .event-info p { color: var(--gray-600); font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .event-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--gray-400); }
+    .event-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ===== Programs ===== */
+    .program-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+    .program-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .program-icon {
+      width: 52px; height: 52px;
+      background: var(--gold-pale);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--gold);
+    }
+    .program-icon svg { width: 26px; height: 26px; }
+    .program-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
+    .program-card p { font-size: 0.92rem; color: var(--gray-600); }
+
+    /* ===== CTA Band ===== */
+    .cta-band {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(200,146,26,0.1), transparent 70%);
+    }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-band p { color: rgba(255,255,255,0.8); font-size: 1.1rem; margin: 0 auto 2rem; }
+    .cta-band .btn-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-badge">WAI</div>
+      <div class="logo-text">
+        <span class="logo-main">WAI-CRC</span>
+        <span class="logo-sub">Capital Region Chapter</span>
+      </div>
+    </a>
+    <ul class="navbar-nav" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="wasp-map.html">WASP Map</a></li>
+      <li><a href="volunteer-form.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-cta">Donate</a></li>
+    </ul>
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <!-- Decorative plane SVG -->
+  <svg class="hero-plane" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M580 150L20 20L80 150L20 280L580 150Z" fill="white"/>
+    <path d="M80 150L200 130L200 170L80 150Z" fill="white" opacity="0.5"/>
+    <path d="M300 145L400 100L420 150L400 200L300 155L300 145Z" fill="white" opacity="0.4"/>
+    <path d="M20 280L80 150L140 200L20 280Z" fill="white" opacity="0.3"/>
+  </svg>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Northern Virginia · Est. Chapter
+      </div>
+      <h1>Women In Aviation<br><span>Capital Region Chapter</span></h1>
+      <p class="hero-sub">Connecting, inspiring, and empowering women and men in all aviation career fields through networking, mentorship, education, and scholarships in the Northern Virginia area.</p>
+      <div class="hero-actions">
+        <a href="get-involved.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Join Our Chapter
+        </a>
+        <a href="about.html" class="btn btn-secondary btn-lg">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- ===== MISSION BAND ===== -->
+<section class="mission-band">
+  <div class="container text-center">
+    <p>"Encouraging and providing resources for women pursuing careers in aviation while celebrating those who have paved the way."</p>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="grid-4">
+      <div class="stat-item fade-in">
+        <div class="stat-number">WAI</div>
+        <div class="stat-label">International Member</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">$15</div>
+        <div class="stat-label">Annual Local Dues</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">N. VA</div>
+        <div class="stat-label">Greater DC Region</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">WASP</div>
+        <div class="stat-label">Heritage Database</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT STRIP ===== -->
+<section class="section about-strip">
+  <div class="container">
+    <div class="grid-2" style="align-items:center; gap: 4rem;">
+      <div class="about-img-block">
+        <div class="about-img-inner">
+          <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.63 12 19.79 19.79 0 0 1 1.55 3.5 2 2 0 0 1 3.53 1.33h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.94-1.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            <path d="M14.05 2a9 9 0 0 1 8 7.94"/>
+            <path d="M14.05 6A5 5 0 0 1 18 10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-content fade-in">
+        <span class="section-label">Who We Are</span>
+        <h2>A Community Built on Wings</h2>
+        <div class="divider"></div>
+        <p style="margin-top:1.25rem;">The WAI Capital Region Chapter (WAI-CRC) is a local chapter of Women In Aviation International — a nonprofit 501(c)(3) dedicated to providing networking, education, mentoring, and scholarship opportunities for women and men in all aviation career fields.</p>
+        <p>Our members span the Northern Virginia and greater Washington D.C. area, coming together to celebrate aviation, support the next generation of aviators, and honor the legacy of trailblazing women in flight.</p>
+        <div style="display:flex; gap:1rem; margin-top:1.75rem; flex-wrap: wrap;">
+          <a href="about.html" class="btn btn-primary">Our Story</a>
+          <a href="get-involved.html" class="btn btn-outline">Get Involved</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMS ===== -->
+<section class="section" style="background: var(--off-white);">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">What We Do</span>
+      <h2>Our Programs & Focus Areas</h2>
+      <div class="divider"></div>
+      <p style="margin-top:1rem;">From mentorship to scholarships, we support aviation enthusiasts at every stage of their journey.</p>
+    </div>
+    <div class="grid-3">
+      <div class="program-card fade-in">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>Education & Scholarships</h3>
+        <p>Supporting aspiring aviators through WAI's scholarship programs and local educational initiatives to help members achieve their flight training goals.</p>
+      </div>
+      <div class="program-card fade-in">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Networking & Mentorship</h3>
+        <p>Connecting aviation professionals, students, and enthusiasts through chapter events, the Geneva app community, and the annual WAI conference.</p>
+      </div>
+      <div class="program-card fade-in">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Girls in Aviation Day</h3>
+        <p>An annual event inspiring the next generation of female aviators through hands-on experiences, demonstrations, and stories from women in aviation careers.</p>
+      </div>
+      <div class="program-card fade-in">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>WASP Heritage</h3>
+        <p>Honoring the Women Airforce Service Pilots through our interactive gravesite database, preserving the legacy of these pioneering aviators for future generations.</p>
+      </div>
+      <div class="program-card fade-in">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Community Events</h3>
+        <p>From fly-ins to museum tours and airshows, we organize local events that bring together aviation lovers across the greater Washington D.C. area.</p>
+      </div>
+      <div class="program-card fade-in">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Career Development</h3>
+        <p>Helping members advance in their aviation careers through resume workshops, interview prep, and connections to aviation employers in the region.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UPCOMING EVENTS ===== -->
+<section class="section events-section">
+  <div class="container">
+    <div class="section-header flex-between" style="flex-wrap:wrap; gap:1rem;">
+      <div>
+        <span class="section-label">Calendar</span>
+        <h2>Upcoming Events</h2>
+        <div class="divider"></div>
+      </div>
+      <a href="news.html" class="btn btn-outline">View All Events</a>
+    </div>
+    <div class="grid-3">
+      <div class="event-card fade-in">
+        <div class="event-date-block">
+          <div class="month">Jun</div>
+          <div class="day">14</div>
+        </div>
+        <div class="event-info">
+          <h4>Monthly Chapter Meeting</h4>
+          <p>Join us for our regular chapter gathering — news, updates, and great aviation conversation.</p>
+          <div class="event-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 6:30 PM</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Northern VA</span>
+          </div>
+        </div>
+      </div>
+      <div class="event-card fade-in">
+        <div class="event-date-block">
+          <div class="month">Jul</div>
+          <div class="day">19</div>
+        </div>
+        <div class="event-info">
+          <h4>Girls in Aviation Day</h4>
+          <p>Annual event inspiring young women to pursue careers in aviation. Volunteers needed!</p>
+          <div class="event-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> All Day</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> TBD</span>
+          </div>
+        </div>
+      </div>
+      <div class="event-card fade-in">
+        <div class="event-date-block">
+          <div class="month">Aug</div>
+          <div class="day">9</div>
+        </div>
+        <div class="event-info">
+          <h4>Airport Fly-In Meetup</h4>
+          <p>Casual fly-in and hangar tour at a local general aviation airport. All welcome.</p>
+          <div class="event-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 10:00 AM</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Local Airport</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GENEVA CTA ===== -->
+<section class="section" style="background: var(--white);">
+  <div class="container">
+    <div class="highlight-box">
+      <div class="grid-2" style="align-items:center; gap:3rem;">
+        <div>
+          <span class="section-label" style="color: var(--gold-light);">Stay Connected</span>
+          <h2>Join Us on Geneva</h2>
+          <p style="margin: 1rem 0 1.75rem;">The WAI Capital Region Chapter uses Geneva as our closed, safe platform for member communication. Stay in the loop on chapter events, news, and connect with fellow aviation enthusiasts.</p>
+          <a href="get-involved.html" class="btn btn-primary">Learn How to Join</a>
+        </div>
+        <div style="text-align:center;">
+          <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="cta-band">
+  <div class="container">
+    <span class="section-label" style="color: var(--gold-light);">Be Part of the Mission</span>
+    <h2>Ready to Take Flight With Us?</h2>
+    <p>Whether you're a seasoned pilot, aviation professional, student, or simply passionate about flight — there's a place for you in the WAI Capital Region Chapter.</p>
+    <div class="btn-actions">
+      <a href="get-involved.html" class="btn btn-primary btn-lg">Become a Member</a>
+      <a href="volunteer-form.html" class="btn btn-secondary btn-lg">Volunteer With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="display:inline-flex;">
+          <div class="logo-badge">WAI</div>
+          <div class="logo-text">
+            <span class="logo-main" style="color:white;">WAI-CRC</span>
+            <span class="logo-sub">Capital Region Chapter</span>
+          </div>
+        </div>
+        <p>A local chapter of Women In Aviation International, serving the Northern Virginia and greater Washington D.C. area. Empowering everyone who loves to fly.</p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M4 20L20 4"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="news.html">Membership News</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <nav class="footer-links">
+          <a href="donate.html">Girls in Aviation Day</a>
+          <a href="wasp-map.html">WASP Gravesite Map</a>
+          <a href="volunteer-form.html">Volunteer</a>
+          <a href="donate.html">Donate</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">WAI National</div>
+        <nav class="footer-links">
+          <a href="https://www.wai.org" target="_blank" rel="noopener">WAI International</a>
+          <a href="https://www.wai.org/conferences" target="_blank" rel="noopener">Annual Conference</a>
+          <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener">Scholarships</a>
+          <a href="volunteer-form.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast & Back-to-top -->
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>

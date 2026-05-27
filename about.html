@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT US | WAI Capital Region Chapter</title>
+  <meta name="description" content="Learn about the Women In Aviation International Capital Region Chapter — our mission, history, and leadership team in Northern Virginia.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .leader-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .leader-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .leader-avatar {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .leader-avatar::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(27,45,107,0.5), transparent);
+    }
+    .leader-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.3);
+      user-select: none;
+    }
+    .leader-info { padding: 1.5rem; }
+    .leader-info h4 { font-size: 1.05rem; margin-bottom: 0.25rem; }
+    .leader-role {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .leader-info p { font-size: 0.88rem; color: var(--gray-600); }
+
+    .value-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .value-item:hover { box-shadow: var(--shadow-md); }
+    .value-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: rgba(200,146,26,0.2);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 40px;
+    }
+    .value-item h4 { margin-bottom: 0.4rem; }
+    .value-item p { font-size: 0.92rem; color: var(--gray-600); }
+
+    .org-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--gold);
+    }
+    .org-badge-icon {
+      width: 48px; height: 48px;
+      background: var(--gold-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .org-badge p { font-size: 0.88rem; color: var(--gray-600); margin-top: 0.2rem; }
+    .org-badge h4 { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-badge">WAI</div>
+      <div class="logo-text">
+        <span class="logo-main">WAI-CRC</span>
+        <span class="logo-sub">Capital Region Chapter</span>
+      </div>
+    </a>
+    <ul class="navbar-nav" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="wasp-map.html">WASP Map</a></li>
+      <li><a href="volunteer-form.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-cta">Donate</a></li>
+    </ul>
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> About Us</div>
+    <h1>About WAI-CRC</h1>
+    <p>Our story, mission, and the community of aviation enthusiasts behind the Women In Aviation International Capital Region Chapter.</p>
+  </div>
+</section>
+
+<!-- ===== MISSION ===== -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items:center; gap:4rem;">
+      <div class="fade-in">
+        <span class="section-label">Our Mission</span>
+        <h2>Empowering Aviators at Every Level</h2>
+        <div class="divider"></div>
+        <p style="margin-top:1.25rem; color:var(--gray-600);">The WAI Capital Region Chapter (WAI-CRC) is a nonprofit local chapter of Women In Aviation International — the world's leading organization dedicated to the encouragement and advancement of women in all aviation career fields and interests.</p>
+        <p style="margin-top:1rem; color:var(--gray-600);">We serve the Northern Virginia and greater Washington D.C. area, bringing together pilots, aerospace engineers, air traffic controllers, flight attendants, mechanics, aviation enthusiasts, and anyone who simply loves to fly.</p>
+        <p style="margin-top:1rem; color:var(--gray-600);">Our chapter provides a welcoming, inclusive community where all genders are supported in pursuing their aviation dreams — from first flights to career milestones.</p>
+        <div class="callout" style="margin-top:1.75rem;">
+          <p><strong>WAI International</strong> is a 501(c)(3) nonprofit organization headquartered in Dayton, Ohio, with chapters worldwide. Our Capital Region Chapter serves the greater D.C. / Northern Virginia area.</p>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="grid-2" style="gap:1rem;">
+          <div class="value-item">
+            <div class="value-num">01</div>
+            <div>
+              <h4>Networking</h4>
+              <p>Connecting aviation professionals, students, and enthusiasts across the region.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">02</div>
+            <div>
+              <h4>Education</h4>
+              <p>Supporting aviation learning at all levels, from ground school to advanced certifications.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">03</div>
+            <div>
+              <h4>Mentorship</h4>
+              <p>Pairing experienced aviators with those just beginning their journey in flight.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">04</div>
+            <div>
+              <h4>Scholarships</h4>
+              <p>Advocating for and helping members access WAI's national scholarship opportunities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAI NATIONAL CONNECTION ===== -->
+<section class="section" style="background: var(--off-white);">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">Our Foundation</span>
+      <h2>Part of a Global Network</h2>
+      <div class="divider"></div>
+      <p style="margin-top:1rem;">As a local chapter of Women In Aviation International, we're connected to a worldwide community of aviation advocates.</p>
+    </div>
+    <div class="grid-3 fade-in">
+      <div class="org-badge">
+        <div class="org-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h4>WAI International</h4>
+          <p>501(c)(3) nonprofit, Dayton OH. Annual conference, scholarships, and advocacy for aviation worldwide.</p>
+        </div>
+      </div>
+      <div class="org-badge">
+        <div class="org-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h4>Capital Region Chapter</h4>
+          <p>Your local connection — Northern Virginia and Washington D.C. area. Local dues of $15/year.</p>
+        </div>
+      </div>
+      <div class="org-badge">
+        <div class="org-badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <h4>Geneva Community</h4>
+          <p>Our members-only platform for chapter communication, event updates, and member connection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEADERSHIP ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-label">Our Team</span>
+      <h2>Chapter Leadership</h2>
+      <div class="divider"></div>
+      <p style="margin-top:1rem;">Our volunteer leaders are passionate aviators dedicated to building the WAI-CRC community.</p>
+    </div>
+    <div class="grid-4">
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><div class="leader-initials">P</div></div>
+        <div class="leader-info">
+          <div class="leader-role">President</div>
+          <h4>Chapter President</h4>
+          <p>Leading WAI-CRC's mission and strategic direction for the Capital Region.</p>
+        </div>
+      </div>
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><div class="leader-initials">VP</div></div>
+        <div class="leader-info">
+          <div class="leader-role">Vice President</div>
+          <h4>Vice President</h4>
+          <p>Supporting chapter operations and programming initiatives.</p>
+        </div>
+      </div>
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><div class="leader-initials">S</div></div>
+        <div class="leader-info">
+          <div class="leader-role">Secretary</div>
+          <h4>Chapter Secretary</h4>
+          <p>Managing chapter records, communications, and member correspondence.</p>
+        </div>
+      </div>
+      <div class="leader-card fade-in">
+        <div class="leader-avatar"><div class="leader-initials">T</div></div>
+        <div class="leader-info">
+          <div class="leader-role">Treasurer</div>
+          <h4>Chapter Treasurer</h4>
+          <p>Overseeing chapter finances, dues collection, and fundraising efforts.</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:2.5rem; text-align:center;">
+      <p>Want to help lead the chapter? <a href="volunteer-form.html" style="color:var(--navy); font-weight:600;">Contact us</a> to learn about volunteer leadership opportunities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HISTORY / TIMELINE ===== -->
+<section class="section" style="background: var(--off-white);">
+  <div class="container container-sm">
+    <div class="section-header text-center">
+      <span class="section-label">Our Story</span>
+      <h2>Chapter History</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="timeline" style="margin-top:2.5rem;">
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">The Beginning</div>
+        <h4>WAI Capital Region Chapter Founded</h4>
+        <p>A group of aviation-passionate women and men in Northern Virginia came together to form a local WAI chapter, establishing a community hub for regional aviators.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Growing Community</div>
+        <h4>First Girls in Aviation Day</h4>
+        <p>The chapter hosted its inaugural Girls in Aviation Day, inspiring dozens of young women to consider careers in flight.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Heritage Project</div>
+        <h4>WASP Gravesite Database Launched</h4>
+        <p>In partnership with Texas Woman's University, the chapter helped bring the WASP gravesite database online with Google Maps integration — honoring the Women Airforce Service Pilots.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Digital Connection</div>
+        <h4>Chapter Moves to Geneva Platform</h4>
+        <p>To better serve members, the chapter adopted Geneva as its closed, safe member communication platform — keeping the community connected year-round.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Today</div>
+        <h4>Continuing the Mission</h4>
+        <p>WAI-CRC continues to grow, welcoming aviators at all levels and expanding programs to serve the Northern Virginia and D.C. aviation community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOIN CTA ===== -->
+<section class="section">
+  <div class="container">
+    <div class="highlight-box text-center">
+      <span class="section-label" style="color: var(--gold-light);">Join Us</span>
+      <h2 style="margin-bottom:1rem;">Become Part of Our Story</h2>
+      <p style="max-width:560px; margin: 0 auto 2rem;">Whether you have 10,000 flight hours or just a dream of flying — there is a place for you in the WAI Capital Region Chapter.</p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="get-involved.html" class="btn btn-primary btn-lg">Join the Chapter</a>
+        <a href="volunteer-form.html" class="btn btn-secondary btn-lg">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="display:inline-flex;">
+          <div class="logo-badge">WAI</div>
+          <div class="logo-text">
+            <span class="logo-main" style="color:white;">WAI-CRC</span>
+            <span class="logo-sub">Capital Region Chapter</span>
+          </div>
+        </div>
+        <p>A local chapter of Women In Aviation International, serving the Northern Virginia and greater Washington D.C. area.</p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="news.html">Membership News</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <nav class="footer-links">
+          <a href="donate.html">Girls in Aviation Day</a>
+          <a href="wasp-map.html">WASP Gravesite Map</a>
+          <a href="volunteer-form.html">Volunteer</a>
+          <a href="donate.html">Donate</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">WAI National</div>
+        <nav class="footer-links">
+          <a href="https://www.wai.org" target="_blank" rel="noopener">WAI International</a>
+          <a href="https://www.wai.org/conferences" target="_blank" rel="noopener">Annual Conference</a>
+          <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener">Scholarships</a>
+          <a href="volunteer-form.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="js/main.js"></script>
+</body>
+</html>

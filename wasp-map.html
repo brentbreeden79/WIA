@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WASP GRAVESITE MAP | WAI Capital Region Chapter</title>
+  <meta name="description" content="Interactive map of Women Airforce Service Pilots (WASP) gravesite locations across the United States, provided in partnership with Texas Woman's University.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .map-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 0;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      min-height: 620px;
+    }
+    @media(max-width:900px) { .map-layout { grid-template-columns: 1fr; } }
+
+    /* Sidebar */
+    .map-sidebar {
+      background: var(--navy-dark);
+      padding: 1.5rem;
+      overflow-y: auto;
+      max-height: 620px;
+    }
+    .map-sidebar-header {
+      margin-bottom: 1.25rem;
+    }
+    .map-sidebar-header h3 { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .map-search {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .map-search input {
+      flex: 1;
+      padding: 0.6rem 0.875rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-size: 0.875rem;
+      outline: none;
+    }
+    .map-search input::placeholder { color: rgba(255,255,255,0.4); }
+    .map-search input:focus { border-color: var(--gold); }
+    .wasp-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .wasp-item {
+      padding: 0.75rem 0.875rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background var(--transition);
+      border: 1px solid transparent;
+    }
+    .wasp-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); }
+    .wasp-item.active { background: rgba(200,146,26,0.15); border-color: rgba(200,146,26,0.3); }
+    .wasp-item-name { font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 0.15rem; }
+    .wasp-item-detail { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .wasp-count {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* Map area */
+    .map-container { position: relative; background: var(--gray-100); }
+    .map-frame {
+      width: 100%;
+      height: 620px;
+      border: none;
+      display: block;
+    }
+    .map-info-overlay {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      padding: 1.25rem;
+      max-width: 260px;
+      display: none;
+    }
+    .map-info-overlay.visible { display: block; }
+    .map-info-overlay h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--navy-dark); }
+    .map-info-overlay p { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.5rem; }
+    .map-info-close {
+      position: absolute;
+      top: 0.5rem; right: 0.75rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: var(--gray-400);
+      line-height: 1;
+    }
+
+    /* WASP profile card */
+    .wasp-profile {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .wasp-profile.visible { display: block; }
+    .wasp-profile-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      padding: 1.5rem;
+      color: var(--white);
+    }
+    .wasp-profile-header h3 { color: var(--white); font-size: 1.15rem; margin-bottom: 0.25rem; }
+    .wasp-profile-header p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 0; }
+    .wasp-profile-body { padding: 1.25rem; }
+    .wasp-detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 0.88rem;
+    }
+    .wasp-detail-row:last-child { border-bottom: none; }
+    .wasp-detail-label { color: var(--gray-400); }
+    .wasp-detail-value { color: var(--navy-dark); font-weight: 500; text-align: right; }
+
+    /* About WASP section */
+    .wasp-stat {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .wasp-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .wasp-stat-label { font-size: 0.85rem; color: var(--gray-600); margin-top: 0.35rem; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-badge">WAI</div>
+      <div class="logo-text">
+        <span class="logo-main">WAI-CRC</span>
+        <span class="logo-sub">Capital Region Chapter</span>
+      </div>
+    </a>
+    <ul class="navbar-nav" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="wasp-map.html" class="active">WASP Map</a></li>
+      <li><a href="volunteer-form.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-cta">Donate</a></li>
+    </ul>
+    <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> WASP Gravesite Map</div>
+    <h1>WASP Gravesite Map</h1>
+    <p>Honoring the Women Airforce Service Pilots — the pioneering aviators who flew for their country during World War II. Explore their resting places across the United States.</p>
+  </div>
+</section>
+
+<!-- ===== ABOUT WASP ===== -->
+<section class="section-sm" style="background:var(--off-white);">
+  <div class="container">
+    <div class="grid-2" style="align-items:center; gap:3rem;">
+      <div>
+        <span class="section-label">Who Were the WASP?</span>
+        <h2>Women Airforce Service Pilots</h2>
+        <div class="divider"></div>
+        <p style="margin-top:1rem; color:var(--gray-600);">The Women Airforce Service Pilots (WASP) were a pioneering group of civilian female pilots who flew military aircraft during World War II. They ferried planes, towed targets, and trained male pilots — freeing up men for combat duty.</p>
+        <p style="margin-top:0.75rem; color:var(--gray-600);">Despite flying over 60 million miles and losing 38 members in service, the WASP were denied military status until 1977 and Congressional Gold Medals weren't awarded until 2009. Their courage and sacrifice paved the way for every woman in aviation today.</p>
+        <div class="callout" style="margin-top:1.5rem;">
+          <p>This database was originally provided by <strong>Texas Woman's University</strong>, which holds the official WASP archives. WAI-CRC maintains this map to ensure their legacy is never forgotten.</p>
+        </div>
+      </div>
+      <div class="grid-2" style="gap:1rem;">
+        <div class="wasp-stat fade-in">
+          <div class="wasp-stat-number">1,074</div>
+          <div class="wasp-stat-label">WASP Pilots Served</div>
+        </div>
+        <div class="wasp-stat fade-in">
+          <div class="wasp-stat-number">60M+</div>
+          <div class="wasp-stat-label">Miles Flown</div>
+        </div>
+        <div class="wasp-stat fade-in">
+          <div class="wasp-stat-number">38</div>
+          <div class="wasp-stat-label">Lost in Service</div>
+        </div>
+        <div class="wasp-stat fade-in">
+          <div class="wasp-stat-number">1977</div>
+          <div class="wasp-stat-label">Military Status Granted</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Interactive Map</span>
+      <h2>Find a WASP Gravesite</h2>
+      <div class="divider"></div>
+      <p style="margin-top:0.75rem; color:var(--gray-600);">Search by name or state, or browse the full list. Click a marker on the map to learn about each WASP pilot.</p>
+    </div>
+
+    <!-- Map panel layout -->
+    <div class="map-layout fade-in">
+      <!-- Sidebar list -->
+      <div class="map-sidebar">
+        <div class="map-sidebar-header">
+          <h3>WASP Pilots</h3>
+          <div class="map-search">
+            <input type="text" id="wasp-search" placeholder="Search by name or state…" autocomplete="off">
+          </div>
+        </div>
+        <div class="wasp-count" id="wasp-count">Showing all entries</div>
+        <div class="wasp-list" id="wasp-list"></div>
+      </div>
+
+      <!-- Map iframe -->
+      <div class="map-container">
+        <iframe
+          class="map-frame"
+          id="wasp-map-frame"
+          title="WASP Gravesite Locations"
+          src="https://www.google.com/maps/d/embed?mid=1PAMYpRuFKGAEhD2sMvCuU5cVJJw&ehbc=2E312F&noprof=1"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <!-- Fallback notice -->
+        <div id="map-fallback" style="display:none; position:absolute; inset:0; background:var(--gray-100); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; padding:2rem; text-align:center;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h3 style="color:var(--navy-dark);">Map Loading…</h3>
+          <p style="color:var(--gray-600);">The interactive WASP gravesite map is powered by Google Maps. If it doesn't load, <a href="https://www.wai.org/wasp" target="_blank" rel="noopener" style="color:var(--navy);">visit the WAI WASP page</a> for more information.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selected WASP detail card (shown when list item clicked) -->
+    <div class="wasp-profile" id="wasp-profile" style="margin-top:2rem;">
+      <div class="wasp-profile-header">
+        <h3 id="profile-name">WASP Pilot Name</h3>
+        <p id="profile-subtitle">Women Airforce Service Pilots</p>
+      </div>
+      <div class="wasp-profile-body">
+        <div class="wasp-detail-row">
+          <span class="wasp-detail-label">Birth Year</span>
+          <span class="wasp-detail-value" id="profile-born">—</span>
+        </div>
+        <div class="wasp-detail-row">
+          <span class="wasp-detail-label">WASP Class</span>
+          <span class="wasp-detail-value" id="profile-class">—</span>
+        </div>
+        <div class="wasp-detail-row">
+          <span class="wasp-detail-label">Gravesite Location</span>
+          <span class="wasp-detail-value" id="profile-location">—</span>
+        </div>
+        <div class="wasp-detail-row">
+          <span class="wasp-detail-label">State</span>
+          <span class="wasp-detail-value" id="profile-state">—</span>
+        </div>
+        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--gray-100);">
+          <a id="profile-maps-link" href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem;">
+      <p><strong>Data source:</strong> WASP gravesite database originally provided by Texas Woman's University, Denton, TX — home of the official WASP archives. The interactive map uses Google Maps for visualization. If you have additions or corrections, please <a href="volunteer-form.html" style="color:var(--navy);">contact us</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HONOR ROLL CONTEXT ===== -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container container-sm text-center">
+    <span class="section-label">In Memoriam</span>
+    <h2>Remembering Their Sacrifice</h2>
+    <div class="divider"></div>
+    <p style="margin-top:1rem; color:var(--gray-600);">The 38 WASP who died in service were denied full military honors at the time of their deaths. Their families paid to send their bodies home. No flags were flown at half-staff. No military funerals were provided.</p>
+    <p style="margin-top:1rem; color:var(--gray-600);">In 2009, Congress awarded the WASP the Congressional Gold Medal — the highest civilian honor. In 2016, those who served in designated military cemeteries were granted the right to be interred at Arlington National Cemetery, though this was later reversed by Congress in 2016 and their eligibility remains limited.</p>
+    <p style="margin-top:1rem; color:var(--gray-600);">This map is our small act of remembrance — ensuring that anyone can find and visit the resting places of these extraordinary women who changed the course of aviation history.</p>
+    <div style="margin-top:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+      <a href="donate.html" class="btn btn-primary">Support Our Mission</a>
+      <a href="about.html" class="btn btn-outline">About WAI-CRC</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="display:inline-flex;">
+          <div class="logo-badge">WAI</div>
+          <div class="logo-text">
+            <span class="logo-main" style="color:white;">WAI-CRC</span>
+            <span class="logo-sub">Capital Region Chapter</span>
+          </div>
+        </div>
+        <p>A local chapter of Women In Aviation International, serving the Northern Virginia and greater Washington D.C. area.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="get-involved.html">Get Involved</a>
+          <a href="news.html">Membership News</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <nav class="footer-links">
+          <a href="donate.html">Girls in Aviation Day</a>
+          <a href="wasp-map.html">WASP Gravesite Map</a>
+          <a href="volunteer-form.html">Volunteer</a>
+          <a href="donate.html">Donate</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-heading">WAI National</div>
+        <nav class="footer-links">
+          <a href="https://www.wai.org" target="_blank" rel="noopener">WAI International</a>
+          <a href="https://www.wai.org/conferences" target="_blank" rel="noopener">Annual Conference</a>
+          <a href="https://www.wai.org/scholarships" target="_blank" rel="noopener">Scholarships</a>
+          <a href="volunteer-form.html">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+<button id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="js/main.js"></script>
+<script>
+// Sample WASP data — replace with full dataset from TWU / WAI archives
+const waspData = [
+  { name: "Evelyn Sharp", class: "43-W-4", state: "Nebraska", location: "Ord, NE", born: "1919", lat: 41.603, lng: -98.929 },
+  { name: "Cornelia Fort", class: "43-W-1", state: "Tennessee", location: "Nashville, TN", born: "1919", lat: 36.174, lng: -86.767 },
+  { name: "Marie Mitchell", class: "44-W-5", state: "Texas", location: "Sweetwater, TX", born: "1921", lat: 32.471, lng: -100.406 },
+  { name: "Mabel Rawlinson", class: "43-W-8", state: "Michigan", location: "Battle Creek, MI", born: "1920", lat: 42.321, lng: -85.179 },
+  { name: "Mary Hartson", class: "43-W-6", state: "Oregon", location: "Portland, OR", born: "1920", lat: 45.523, lng: -122.676 },
+  { name: "Lea Ola Hammond", class: "44-W-1", state: "Texas", location: "San Antonio, TX", born: "1921", lat: 29.424, lng: -98.494 },
+  { name: "Dorothy Nichols", class: "43-W-5", state: "California", location: "San Diego, CA", born: "1919", lat: 32.715, lng: -117.157 },
+  { name: "Jeanne Norbeck", class: "44-W-3", state: "Illinois", location: "Chicago, IL", born: "1922", lat: 41.878, lng: -87.630 },
+  { name: "Betty Stine", class: "44-W-2", state: "Ohio", location: "Columbus, OH", born: "1920", lat: 39.961, lng: -82.999 },
+  { name: "Susan Clarke", class: "44-W-6", state: "Virginia", location: "Richmond, VA", born: "1923", lat: 37.541, lng: -77.434 },
+  { name: "Frances Grimes", class: "43-W-7", state: "Georgia", location: "Atlanta, GA", born: "1919", lat: 33.748, lng: -84.387 },
+  { name: "Helen Joedon", class: "44-W-4", state: "New York", location: "Buffalo, NY", born: "1921", lat: 42.886, lng: -78.879 },
+  { name: "Kathryn Lawrence", class: "43-W-2", state: "Florida", location: "Miami, FL", born: "1918", lat: 25.774, lng: -80.194 },
+  { name: "Patricia Bury", class: "44-W-7", state: "Massachusetts", location: "Boston, MA", born: "1922", lat: 42.360, lng: -71.058 },
+  { name: "Grace Mitchell", class: "43-W-3", state: "Colorado", location: "Denver, CO", born: "1920", lat: 39.739, lng: -104.984 },
+];
+
+let filteredData = [...waspData];
+
+function renderList(data) {
+  const list = document.getElementById('wasp-list');
+  const count = document.getElementById('wasp-count');
+  list.innerHTML = '';
+  count.textContent = `Showing ${data.length} of ${waspData.length} pilots`;
+  data.forEach((wasp, i) => {
+    const item = document.createElement('div');
+    item.className = 'wasp-item';
+    item.innerHTML = `<div class="wasp-item-name">${wasp.name}</div><div class="wasp-item-detail">Class ${wasp.class} · ${wasp.state}</div>`;
+    item.addEventListener('click', () => showProfile(wasp, item));
+    list.appendChild(item);
+  });
+}
+
+function showProfile(wasp, itemEl) {
+  document.querySelectorAll('.wasp-item').forEach(i => i.classList.remove('active'));
+  itemEl.classList.add('active');
+  document.getElementById('profile-name').textContent = wasp.name;
+  document.getElementById('profile-subtitle').textContent = `WASP Class ${wasp.class}`;
+  document.getElementById('profile-born').textContent = wasp.born;
+  document.getElementById('profile-class').textContent = wasp.class;
+  document.getElementById('profile-location').textContent = wasp.location;
+  document.getElementById('profile-state').textContent = wasp.state;
+  document.getElementById('profile-maps-link').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(wasp.location)}`;
+  const profile = document.getElementById('wasp-profile');
+  profile.classList.add('visible');
+  profile.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  showToast(`Viewing profile: ${wasp.name}`);
+}
+
+// Search
+document.getElementById('wasp-search').addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  filteredData = waspData.filter(w =>
+    w.name.toLowerCase().includes(q) ||
+    w.state.toLowerCase().includes(q) ||
+    w.class.toLowerCase().includes(q) ||
+    w.location.toLowerCase().includes(q)
+  );
+  renderList(filteredData);
+});
+
+renderList(waspData);
+</script>
+</body>
+</html>
