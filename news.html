@@ -6,6 +6,7 @@
   <title>MEMBERSHIP NEWS | WAI Capital Region Chapter</title>
   <meta name="description" content="Latest news, events, and announcements from the Women In Aviation International Capital Region Chapter.">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     .news-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
     @media(max-width:900px) { .news-grid { grid-template-columns: 1fr; } }
@@ -382,8 +383,12 @@
   function renderArticle(post) {
     const d = new Date(post.date + 'T12:00:00');
     const dateStr = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const imgHtml = post.image
+      ? `<img src="${post.image}" alt="${post.title}" style="width:100%;max-height:380px;object-fit:cover;border-radius:8px;margin-bottom:1.5rem;">`
+      : '';
     return `
       <article class="news-article fade-in" data-category="${post.category}">
+        ${imgHtml}
         <div class="news-article-header">
           <span class="card-tag">${post.category}</span>
           <h2>${post.title}</h2>
@@ -478,7 +483,9 @@
     fetch('data/news.json').then(r => r.json()),
     fetch('data/events.json').then(r => r.json()),
     fetch('data/settings.json').then(r => r.json())
-  ]).then(([news, events, settings]) => {
+  ]).then(([newsData, eventsData, settings]) => {
+    const news = (newsData.items || newsData);
+    const events = (eventsData.items || eventsData);
     allNews = news.sort((a, b) => new Date(b.date) - new Date(a.date));
     filterNews('all');
     renderSidebarEvents(events);

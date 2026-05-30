@@ -20,13 +20,23 @@ Website for the Women In Aviation International Capital Region Chapter (WAI-CRC)
 
 ## Editing Content (No Code Required)
 
-All news posts, events, and site settings are managed through the **admin panel** at `/admin`. You do not need to edit any HTML files to update content.
+All news posts, events, and site settings are managed through the **admin panel** at `yoursite.netlify.app/admin`. You do not need to edit any HTML files to update content.
 
 ### What You Can Edit in the Admin Panel
 
-- **News & Announcements** — add, edit, or delete news posts
+- **News & Announcements** — add, edit, or delete news posts (with optional featured photos)
 - **Events** — add, edit, or delete upcoming events (shown on the News page sidebar and calendar)
 - **Site Settings** — contact email, Google Calendar ID, social media links, fundraising goal, chapter dues
+
+### Adding a Photo to a News Post
+
+1. Go to `/admin` and log in
+2. Click **"News & Announcements"**
+3. Click an existing post or **"Add Posts"** to create a new one
+4. Scroll to the **"Featured Image"** field
+5. Click **"Choose an image"** → **"Upload"** → select a photo from your computer
+6. The image will be uploaded automatically to `images/uploads/` and linked to the post
+7. Click **"Save"** — the photo will appear at the top of the post on the News page
 
 ---
 
@@ -55,25 +65,34 @@ Netlify is required to use the `/admin` content editor. It is free.
 
 Your site will be live in about 1 minute at a URL like `random-name.netlify.app`.
 
-### Step 3 — Enable the admin panel (Netlify Identity)
+### Step 3 — Enable the admin panel (Netlify Identity + Git Gateway)
 
-1. In the Netlify dashboard, click **"Site configuration"** in the left sidebar
-2. Click **"Identity"** → click **"Enable Identity"**
-3. Under **"Registration preferences"** → select **"Invite only"**
+The content editor uses **Netlify Identity** for login and **Git Gateway** to save changes back to GitHub. Both must be enabled.
+
+1. In the Netlify dashboard, click your site → click **"Site configuration"** in the left sidebar
+2. Click **"Identity"** in the left menu → click **"Enable Identity"**
+3. Under **"Registration preferences"** → select **"Invite only"** (prevents strangers from signing up)
 4. Scroll down to **"Services"** → click **"Enable Git Gateway"**
+   - This is what allows the CMS to write files back to GitHub when you save content or upload images
+   - If prompted to install the GitHub app, approve it
 
 ### Step 4 — Invite yourself as an admin
 
 1. Still in the Identity section, click **"Invite users"**
-2. Enter your email address and click **"Send"**
-3. Check your email for an invitation — click the link to set your password
-4. You can invite other editors the same way
+2. Enter your email address (`capitalregionwai@gmail.com` or personal) and click **"Send"**
+3. Check your email for an invitation link — click it and set a password
+4. You can repeat this to invite other editors (e.g., chapter board members who will post news)
 
 ### Step 5 — Log in to the admin panel
 
 1. Go to `yoursite.netlify.app/admin`
-2. Log in with the email and password you just set
-3. You will see the content editor with three sections: News, Events, and Site Settings
+2. Log in with the email and password you set in Step 4
+3. You will see the content editor with three sections:
+   - **News & Announcements** — create posts, upload featured photos
+   - **Events** — manage the chapter event calendar
+   - **Site Settings** — contact info, PayPal/donation settings
+
+> **Tip:** Bookmark `yoursite.netlify.app/admin` and share it with board members who need to post news. They each need their own invitation (Step 4).
 
 ---
 

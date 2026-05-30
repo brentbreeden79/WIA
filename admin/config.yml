@@ -33,6 +33,13 @@ collections:
             options: [Announcement, Event Recap, Scholarships, Aviation News, Member Spotlight]
           - { name: author,   label: Author,   widget: string,   default: "WAI-CRC Staff" }
           - { name: excerpt,  label: "Short Excerpt (shown in cards)", widget: text }
+          - name: image
+            label: "Featured Image (optional)"
+            widget: image
+            required: false
+            hint: "Upload a photo to display at the top of this post."
+            media_folder: /images/uploads
+            public_folder: /images/uploads
           - { name: body,     label: "Full Article Body (Markdown supported)", widget: markdown }
 
   # ── EVENTS ───────────────────────────────────────────────────

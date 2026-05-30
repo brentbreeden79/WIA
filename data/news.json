@@ -1,38 +1,40 @@
-[
-  {
-    "id": "giad-2025",
-    "title": "Girls in Aviation Day 2025 — Save the Date!",
-    "date": "2025-05-15",
-    "category": "Announcement",
-    "author": "WAI-CRC Staff",
-    "excerpt": "We are thrilled to announce that Girls in Aviation Day 2025 is coming up soon!",
-    "body": "We are thrilled to announce that Girls in Aviation Day 2025 is coming up soon! This annual event, organized by Women In Aviation International chapters worldwide, is dedicated to inspiring young women to pursue careers in aviation and aerospace.\n\nThis year's event will feature hands-on activities, meet-and-greets with women pilots and aviation professionals, cockpit tours, and engaging STEM activities for participants of all ages.\n\n**What to Expect:**\n- Interactive flight simulators and cockpit tours\n- Panel discussions with women in aviation careers\n- STEM and aviation activities for kids and teens\n- Scholarship information and mentorship sign-ups\n- Networking with local aviation professionals\n\nDate: TBD — check back for updates or sign up for our mailing list."
-  },
-  {
-    "id": "april-meeting-2025",
-    "title": "April Chapter Meeting Highlights",
-    "date": "2025-04-22",
-    "category": "Event Recap",
-    "author": "Chapter Secretary",
-    "excerpt": "Thank you to all members who attended our April chapter meeting!",
-    "body": "Thank you to all members who attended our April chapter meeting! It was a fantastic evening of aviation conversation, chapter updates, and great company.\n\n**Key Topics Discussed:**\n- Planning updates for Girls in Aviation Day 2025\n- WAI International annual conference preview and registration info\n- New scholarship opportunities from WAI national\n- Upcoming fly-in event planning\n- Welcome to three new chapter members!\n\nOur next monthly meeting will be in June — details to be announced on Geneva."
-  },
-  {
-    "id": "scholarships-2025",
-    "title": "WAI Scholarship Applications Now Open",
-    "date": "2025-03-10",
-    "category": "Scholarships",
-    "author": "WAI-CRC Staff",
-    "excerpt": "Women In Aviation International has opened applications for its annual scholarship program.",
-    "body": "Women In Aviation International has opened applications for its annual scholarship program. WAI offers numerous scholarships to support members pursuing aviation education, flight training, and aerospace careers.\n\n**How to Apply:**\n- Must be a current WAI International member\n- Visit wai.org/scholarships for the full list\n- Scholarships available for pilots, mechanics, ATC, and more\n- Applications typically due in the fall — check the WAI site for deadlines\n\nChapter members who need help with applications are encouraged to reach out — we're here to support you!"
-  },
-  {
-    "id": "womens-history-2025",
-    "title": "Celebrating Women's History Month in Aviation",
-    "date": "2025-03-01",
-    "category": "Aviation News",
-    "author": "WAI-CRC Staff",
-    "excerpt": "March is Women's History Month, and the WAI Capital Region Chapter is celebrating the incredible legacy of women in aviation.",
-    "body": "March is Women's History Month, and the WAI Capital Region Chapter is celebrating the incredible legacy of women in aviation — from Bessie Coleman and Amelia Earhart to the Women Airforce Service Pilots (WASP) and the trailblazers of today.\n\nDid you know? The WASP flew over 60 million miles for the U.S. military during WWII, yet weren't granted full military status until 1977. Our WASP Gravesite Map honors their memory.\n\nShare your story or nominate a woman in aviation who inspires you by contacting us."
-  }
-]
+{
+  "items": [
+    {
+      "id": "giad-2025",
+      "title": "Girls in Aviation Day 2025 \u2014 Save the Date!",
+      "date": "2025-05-15",
+      "category": "Announcement",
+      "author": "WAI-CRC Staff",
+      "excerpt": "We are thrilled to announce that Girls in Aviation Day 2025 is coming up soon!",
+      "body": "We are thrilled to announce that Girls in Aviation Day 2025 is coming up soon! This annual event, organized by Women In Aviation International chapters worldwide, is dedicated to inspiring young women to pursue careers in aviation and aerospace.\n\nThis year's event will feature hands-on activities, meet-and-greets with women pilots and aviation professionals, cockpit tours, and engaging STEM activities for participants of all ages.\n\n**What to Expect:**\n- Interactive flight simulators and cockpit tours\n- Panel discussions with women in aviation careers\n- STEM and aviation activities for kids and teens\n- Scholarship information and mentorship sign-ups\n- Networking with local aviation professionals\n\nDate: TBD \u2014 check back for updates or sign up for our mailing list."
+    },
+    {
+      "id": "april-meeting-2025",
+      "title": "April Chapter Meeting Highlights",
+      "date": "2025-04-22",
+      "category": "Event Recap",
+      "author": "Chapter Secretary",
+      "excerpt": "Thank you to all members who attended our April chapter meeting!",
+      "body": "Thank you to all members who attended our April chapter meeting! It was a fantastic evening of aviation conversation, chapter updates, and great company.\n\n**Key Topics Discussed:**\n- Planning updates for Girls in Aviation Day 2025\n- WAI International annual conference preview and registration info\n- New scholarship opportunities from WAI national\n- Upcoming fly-in event planning\n- Welcome to three new chapter members!\n\nOur next monthly meeting will be in June \u2014 details to be announced on Geneva."
+    },
+    {
+      "id": "scholarships-2025",
+      "title": "WAI Scholarship Applications Now Open",
+      "date": "2025-03-10",
+      "category": "Scholarships",
+      "author": "WAI-CRC Staff",
+      "excerpt": "Women In Aviation International has opened applications for its annual scholarship program.",
+      "body": "Women In Aviation International has opened applications for its annual scholarship program. WAI offers numerous scholarships to support members pursuing aviation education, flight training, and aerospace careers.\n\n**How to Apply:**\n- Must be a current WAI International member\n- Visit wai.org/scholarships for the full list\n- Scholarships available for pilots, mechanics, ATC, and more\n- Applications typically due in the fall \u2014 check the WAI site for deadlines\n\nChapter members who need help with applications are encouraged to reach out \u2014 we're here to support you!"
+    },
+    {
+      "id": "womens-history-2025",
+      "title": "Celebrating Women's History Month in Aviation",
+      "date": "2025-03-01",
+      "category": "Aviation News",
+      "author": "WAI-CRC Staff",
+      "excerpt": "March is Women's History Month, and the WAI Capital Region Chapter is celebrating the incredible legacy of women in aviation.",
+      "body": "March is Women's History Month, and the WAI Capital Region Chapter is celebrating the incredible legacy of women in aviation \u2014 from Bessie Coleman and Amelia Earhart to the Women Airforce Service Pilots (WASP) and the trailblazers of today.\n\nDid you know? The WASP flew over 60 million miles for the U.S. military during WWII, yet weren't granted full military status until 1977. Our WASP Gravesite Map honors their memory.\n\nShare your story or nominate a woman in aviation who inspires you by contacting us."
+    }
+  ]
+}
