@@ -242,14 +242,7 @@
         <h2>Make a Donation</h2>
         <p style="color:var(--gray-600); margin-bottom:1.5rem;">Your contribution supports Girls in Aviation Day and helps fund chapter programs throughout the year. WAI-CRC is a nonprofit organization — your donation may be tax deductible.</p>
 
-        <form id="donate-form" action="https://www.paypal.com/donate" method="post" target="_blank">
-          <input type="hidden" name="business" value="CapitalRegion@wai-crc.org">
-          <input type="hidden" name="item_name" value="WAI-CRC Girls in Aviation Day Fund">
-          <input type="hidden" name="currency_code" value="USD">
-          <input type="hidden" name="no_shipping" value="1">
-          <input type="hidden" id="donation-amount" name="amount" value="25">
-          <input type="hidden" id="donation-recurring" name="no_recurring" value="1">
-
+        <div id="donate-widget">
           <div class="form-group">
             <label class="form-label">Donation Amount</label>
             <div class="amount-grid" id="amount-grid">
@@ -265,29 +258,17 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label">Donation Frequency</label>
-            <div style="display:flex; gap:1rem;">
-              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                <input type="radio" name="frequency" value="one-time" checked style="accent-color:var(--navy);"> One-time
-              </label>
-              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                <input type="radio" name="frequency" value="monthly" style="accent-color:var(--navy);"> Monthly
-              </label>
-            </div>
-          </div>
-
           <div style="height:1px; background:var(--gray-100); margin:1.5rem 0;"></div>
 
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center; background:#009cde; border-color:#009cde; font-size:1.1rem;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right:0.5rem;"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+          <a id="paypal-btn" href="#" target="_blank" rel="noopener" class="btn btn-lg" style="width:100%; justify-content:center; background:#009cde; border-color:#009cde; color:white; font-size:1.1rem; display:flex; align-items:center; gap:0.5rem; text-decoration:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
             Donate <span id="donate-btn-amount">$25</span> with PayPal
-          </button>
+          </a>
           <p style="font-size:0.8rem; color:var(--gray-400); text-align:center; margin-top:0.75rem;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             Secure payment via PayPal. WAI-CRC is a nonprofit chapter of Women In Aviation International.
           </p>
-        </form>
+        </div>
       </div>
 
       <!-- Sidebar -->
@@ -405,10 +386,22 @@
 </button>
 <script src="js/main.js"></script>
 <script>
-  // Donation amount selector
+  const PAYPAL_BASE = 'https://www.paypal.com/donate/?business=CapitalRegion%40wai-crc.org&item_name=WAI-CRC+Girls+in+Aviation+Day+Fund&currency_code=USD&no_shipping=1&no_recurring=1';
+
+  function updatePayPalBtn(amount) {
+    const btn = document.getElementById('paypal-btn');
+    const label = document.getElementById('donate-btn-amount');
+    const num = parseFloat(amount);
+    if (!amount || isNaN(num) || num <= 0) {
+      btn.href = PAYPAL_BASE;
+      label.textContent = '';
+    } else {
+      btn.href = PAYPAL_BASE + '&amount=' + num;
+      label.textContent = '$' + num;
+    }
+  }
+
   const amountBtns = document.querySelectorAll('.amount-btn');
-  const donationInput = document.getElementById('donation-amount');
-  const donateBtnAmt = document.getElementById('donate-btn-amount');
   const customWrap = document.getElementById('custom-amount-wrap');
   const customInput = document.getElementById('custom-amount');
 
@@ -419,29 +412,16 @@
       const val = btn.dataset.amount;
       if (val === 'custom') {
         customWrap.style.display = 'block';
-        donationInput.value = '';
-        donateBtnAmt.textContent = '';
         customInput.focus();
+        updatePayPalBtn(customInput.value);
       } else {
         customWrap.style.display = 'none';
-        donationInput.value = val;
-        donateBtnAmt.textContent = '$' + val;
+        updatePayPalBtn(val);
       }
     });
   });
 
-  customInput.addEventListener('input', () => {
-    const v = customInput.value;
-    donationInput.value = v;
-    donateBtnAmt.textContent = v ? '$' + v : '';
-  });
-
-  // Frequency toggle — monthly sets no_recurring=0 (PayPal allows recurring)
-  document.querySelectorAll('input[name="frequency"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      document.getElementById('donation-recurring').value = radio.value === 'monthly' ? '0' : '1';
-    });
-  });
+  customInput.addEventListener('input', () => updatePayPalBtn(customInput.value));
 
   // Animate progress bar on load
   window.addEventListener('load', () => {
@@ -450,6 +430,9 @@
       if (fill) fill.style.width = '47%';
     }, 400);
   });
+
+  // Set initial PayPal link ($25 default)
+  updatePayPalBtn(25);
 </script>
 </body>
 </html>
