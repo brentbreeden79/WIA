@@ -87,42 +87,7 @@
     }
     .tier-feature .check svg { width: 12px; height: 12px; }
 
-    .geneva-block {
-      background: linear-gradient(135deg, #0f1f5c, #1B2D6B);
-      border-radius: var(--radius-lg);
-      padding: 3rem;
-      color: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .geneva-block h2 { color: var(--white); margin-bottom: 1rem; }
-    .geneva-block p { color: rgba(255,255,255,0.8); margin-bottom: 1.25rem; }
-    .geneva-steps { display: flex; flex-direction: column; gap: 1rem; }
-    .geneva-step {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .geneva-step-num {
-      width: 28px; height: 28px;
-      background: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--white);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .geneva-step-text h4 { color: var(--white); font-size: 0.95rem; margin-bottom: 0.2rem; }
-    .geneva-step-text p { color: rgba(255,255,255,0.7); font-size: 0.88rem; margin: 0; }
-
     @media(max-width:768px) {
-      .geneva-block { grid-template-columns: 1fr; }
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -193,7 +158,7 @@
         <div class="icon-circle" style="margin-bottom:1rem;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h3>Geneva Community</h3>
+        <h3>Member Community</h3>
         <p style="color:var(--gray-600); font-size:0.92rem;">Join our closed, safe member platform where chapter members share news, plan events, ask questions, and stay connected between meetings.</p>
       </div>
       <div class="icon-box fade-in" style="flex-direction:column; align-items:flex-start; padding:1.75rem; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);">
@@ -247,7 +212,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <h3>Welcome to the Chapter!</h3>
-        <p>Once approved, you'll receive a welcome email with instructions to join our Geneva community and details on upcoming chapter events.</p>
+        <p>Once approved, you'll receive a welcome email with details on upcoming chapter events and how to connect with fellow members.</p>
       </div>
     </div>
     <div style="text-align:center; margin-top:3rem;">
@@ -292,7 +257,7 @@
         <div class="tier-body">
           <div class="tier-features">
             <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Local chapter membership</div>
-            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Geneva community access</div>
+            <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Member community access</div>
             <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Chapter event invitations</div>
             <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> Mentorship program</div>
           </div>
@@ -325,51 +290,6 @@
             <div class="tier-feature"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div> + $15 chapter dues</div>
           </div>
           <a href="https://www.wai.org/join" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">Join at WAI.org</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== GENEVA ===== -->
-<section class="section" style="background:var(--off-white);">
-  <div class="container">
-    <div class="geneva-block fade-in">
-      <div>
-        <span class="section-label" style="color:var(--gold-light);">Member Platform</span>
-        <h2>Connect on Geneva</h2>
-        <p>The WAI Capital Region Chapter uses <strong>Geneva</strong> as our closed, safe platform to keep in touch with members, share event announcements, and stay connected on all things WAI-CRC.</p>
-        <p>Geneva is free to use and available on iOS, Android, and desktop.</p>
-        <a href="volunteer-form.html" class="btn btn-primary" style="margin-top:0.5rem;">Request Geneva Access</a>
-      </div>
-      <div class="geneva-steps">
-        <div class="geneva-step">
-          <div class="geneva-step-num">1</div>
-          <div class="geneva-step-text">
-            <h4>Join the Chapter</h4>
-            <p>Complete your WAI International membership and pay the $15 local chapter dues.</p>
-          </div>
-        </div>
-        <div class="geneva-step">
-          <div class="geneva-step-num">2</div>
-          <div class="geneva-step-text">
-            <h4>Download Geneva</h4>
-            <p>Get the Geneva app on your phone or visit the web app. It's free for members.</p>
-          </div>
-        </div>
-        <div class="geneva-step">
-          <div class="geneva-step-num">3</div>
-          <div class="geneva-step-text">
-            <h4>Receive Your Invite</h4>
-            <p>After approval, a chapter admin will send you an invite link to our private Geneva group.</p>
-          </div>
-        </div>
-        <div class="geneva-step">
-          <div class="geneva-step-num">4</div>
-          <div class="geneva-step-text">
-            <h4>Welcome Aboard!</h4>
-            <p>Introduce yourself, explore channels, and stay current on all chapter news and events.</p>
-          </div>
         </div>
       </div>
     </div>
