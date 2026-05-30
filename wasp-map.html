@@ -366,36 +366,45 @@
 </button>
 <script src="js/main.js"></script>
 <script>
-// Sample WASP data — replace with full dataset from TWU / WAI archives
-const waspData = [
-  { name: "Evelyn Sharp", class: "43-W-4", state: "Nebraska", location: "Ord, NE", born: "1919", lat: 41.603, lng: -98.929 },
-  { name: "Cornelia Fort", class: "43-W-1", state: "Tennessee", location: "Nashville, TN", born: "1919", lat: 36.174, lng: -86.767 },
-  { name: "Marie Mitchell", class: "44-W-5", state: "Texas", location: "Sweetwater, TX", born: "1921", lat: 32.471, lng: -100.406 },
-  { name: "Mabel Rawlinson", class: "43-W-8", state: "Michigan", location: "Battle Creek, MI", born: "1920", lat: 42.321, lng: -85.179 },
-  { name: "Mary Hartson", class: "43-W-6", state: "Oregon", location: "Portland, OR", born: "1920", lat: 45.523, lng: -122.676 },
-  { name: "Lea Ola Hammond", class: "44-W-1", state: "Texas", location: "San Antonio, TX", born: "1921", lat: 29.424, lng: -98.494 },
-  { name: "Dorothy Nichols", class: "43-W-5", state: "California", location: "San Diego, CA", born: "1919", lat: 32.715, lng: -117.157 },
-  { name: "Jeanne Norbeck", class: "44-W-3", state: "Illinois", location: "Chicago, IL", born: "1922", lat: 41.878, lng: -87.630 },
-  { name: "Betty Stine", class: "44-W-2", state: "Ohio", location: "Columbus, OH", born: "1920", lat: 39.961, lng: -82.999 },
-  { name: "Susan Clarke", class: "44-W-6", state: "Virginia", location: "Richmond, VA", born: "1923", lat: 37.541, lng: -77.434 },
-  { name: "Frances Grimes", class: "43-W-7", state: "Georgia", location: "Atlanta, GA", born: "1919", lat: 33.748, lng: -84.387 },
-  { name: "Helen Joedon", class: "44-W-4", state: "New York", location: "Buffalo, NY", born: "1921", lat: 42.886, lng: -78.879 },
-  { name: "Kathryn Lawrence", class: "43-W-2", state: "Florida", location: "Miami, FL", born: "1918", lat: 25.774, lng: -80.194 },
-  { name: "Patricia Bury", class: "44-W-7", state: "Massachusetts", location: "Boston, MA", born: "1922", lat: 42.360, lng: -71.058 },
-  { name: "Grace Mitchell", class: "43-W-3", state: "Colorado", location: "Denver, CO", born: "1920", lat: 39.739, lng: -104.984 },
-];
+let waspData = [];
+let filteredData = [];
 
-let filteredData = [...waspData];
+// Minimal CSV parser that handles quoted fields
+function parseCSV(text) {
+  const results = [];
+  const lines = text.replace(/\r/g, '').split('\n');
+  for (let li = 0; li < lines.length; li++) {
+    const line = lines[li];
+    if (!line.trim()) continue;
+    const row = [];
+    let field = '', inQuote = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQuote = !inQuote; }
+      else if (ch === ',' && !inQuote) { row.push(field.trim()); field = ''; }
+      else { field += ch; }
+    }
+    row.push(field.trim());
+    results.push(row);
+  }
+  return results;
+}
 
 function renderList(data) {
   const list = document.getElementById('wasp-list');
   const count = document.getElementById('wasp-count');
   list.innerHTML = '';
   count.textContent = `Showing ${data.length} of ${waspData.length} pilots`;
-  data.forEach((wasp, i) => {
+  if (data.length === 0) {
+    list.innerHTML = '<p style="color:rgba(255,255,255,0.4);font-size:0.85rem;padding:0.5rem;">No results found.</p>';
+    return;
+  }
+  data.forEach(wasp => {
     const item = document.createElement('div');
     item.className = 'wasp-item';
-    item.innerHTML = `<div class="wasp-item-name">${wasp.name}</div><div class="wasp-item-detail">Class ${wasp.class} · ${wasp.state}</div>`;
+    const cls = wasp.class ? ` · ${wasp.class}` : '';
+    const st = wasp.state ? ` · ${wasp.state}` : '';
+    item.innerHTML = `<div class="wasp-item-name">${wasp.rosterName}</div><div class="wasp-item-detail">${(cls + st).replace(/^ · /, '')}</div>`;
     item.addEventListener('click', () => showProfile(wasp, item));
     list.appendChild(item);
   });
@@ -404,32 +413,61 @@ function renderList(data) {
 function showProfile(wasp, itemEl) {
   document.querySelectorAll('.wasp-item').forEach(i => i.classList.remove('active'));
   itemEl.classList.add('active');
-  document.getElementById('profile-name').textContent = wasp.name;
-  document.getElementById('profile-subtitle').textContent = `WASP Class ${wasp.class}`;
-  document.getElementById('profile-born').textContent = wasp.born;
-  document.getElementById('profile-class').textContent = wasp.class;
-  document.getElementById('profile-location').textContent = wasp.location;
-  document.getElementById('profile-state').textContent = wasp.state;
-  document.getElementById('profile-maps-link').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(wasp.location)}`;
+  document.getElementById('profile-name').textContent = wasp.fullName || wasp.rosterName;
+  document.getElementById('profile-subtitle').textContent = wasp.class ? `WASP Class ${wasp.class}` : 'Women Airforce Service Pilots';
+  document.getElementById('profile-born').textContent = wasp.born || '—';
+  document.getElementById('profile-class').textContent = wasp.class || '—';
+  document.getElementById('profile-location').textContent = wasp.location || '—';
+  document.getElementById('profile-state').textContent = wasp.state || '—';
+  const query = [wasp.location, wasp.state].filter(Boolean).join(', ');
+  document.getElementById('profile-maps-link').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
   const profile = document.getElementById('wasp-profile');
   profile.classList.add('visible');
   profile.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  showToast(`Viewing profile: ${wasp.name}`);
 }
 
-// Search
-document.getElementById('wasp-search').addEventListener('input', (e) => {
+document.getElementById('wasp-search').addEventListener('input', e => {
   const q = e.target.value.toLowerCase();
   filteredData = waspData.filter(w =>
-    w.name.toLowerCase().includes(q) ||
-    w.state.toLowerCase().includes(q) ||
-    w.class.toLowerCase().includes(q) ||
-    w.location.toLowerCase().includes(q)
+    w.rosterName.toLowerCase().includes(q) ||
+    (w.fullName || '').toLowerCase().includes(q) ||
+    (w.state || '').toLowerCase().includes(q) ||
+    (w.class || '').toLowerCase().includes(q) ||
+    (w.location || '').toLowerCase().includes(q)
   );
   renderList(filteredData);
 });
 
-renderList(waspData);
+// Load CSV
+fetch('data/wasp-roster.csv')
+  .then(r => r.text())
+  .then(text => {
+    const rows = parseCSV(text);
+    // Row 0 = "Soard" title, Row 1 = headers, Row 2+ = data
+    const data = rows.slice(2);
+    waspData = data
+      .filter(r => r[2] && r[2].trim())
+      .map(r => ({
+        region:     r[0] || '',
+        class:      r[1] || '',
+        rosterName: r[2] || '',
+        fullName:   r[3] || '',
+        born:       r[4] || '',
+        birthPlace: r[5] || '',
+        hometown:   r[6] || '',
+        died:       r[7] || '',
+        placeDeath: r[8] || '',
+        state:      (r[9] || '').trim(),
+        location:   r[10] || '',
+        resources:  r[11] || '',
+        photo:      r[12] || '',
+      }));
+    filteredData = [...waspData];
+    renderList(waspData);
+  })
+  .catch(() => {
+    document.getElementById('wasp-count').textContent = 'Could not load roster data.';
+  });
 </script>
 </body>
 </html>
