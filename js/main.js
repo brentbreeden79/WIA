@@ -93,7 +93,6 @@ function handleForm(formId, successMsg) {
 
 handleForm('volunteer-form', 'Thank you! We\'ll be in touch soon.');
 handleForm('contact-form', 'Message sent! We\'ll respond within 2 business days.');
-handleForm('donate-form', 'Thank you for your generous donation!');
 
 // Set active nav link
 (function setActiveNav() {
