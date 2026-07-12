@@ -46,21 +46,18 @@ All news posts, events, and site settings are managed through the **admin panel*
 
 Netlify is required to use the `/admin` content editor. It is free.
 
-### Step 1 — Merge the branch to main
+### Step 1 — Know the deployed branch
 
-1. Go to `https://github.com/brentbreeden79/wia`
-2. Click **Pull requests** → **New pull request**
-3. Set base: `main`, compare: `claude/ecstatic-brown-RGsuA`
-4. Click **Create pull request** → **Merge pull request**
+This repository has a single branch, `claude/ecstatic-brown-RGsuA`, and Netlify deploys it directly — every push goes live automatically. The CMS config (`admin/config.yml`) commits to the same branch.
 
 ### Step 2 — Create a Netlify account
 
 1. Go to [netlify.com](https://netlify.com) and sign up for a free account
-2. Click **"Add new site"** → **"Import from Git"**
+2. Click **"Add new project"** → **"Import an existing project"**
 3. Click **"GitHub"** and authorize Netlify to access your repositories
 4. Select the **`brentbreeden79/WIA`** repository
 5. Set the following:
-   - **Branch:** `main`
+   - **Branch:** `claude/ecstatic-brown-RGsuA` (pre-selected — it's the only branch)
    - **Publish directory:** `.` (a single dot — means the root folder)
    - Leave the build command blank
 6. Click **"Deploy site"**

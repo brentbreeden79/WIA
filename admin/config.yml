@@ -1,6 +1,8 @@
+# The branch below must match the branch Netlify deploys
+# (Site configuration → Build & deploy → Branches → Production branch)
 backend:
   name: git-gateway
-  branch: main
+  branch: claude/ecstatic-brown-RGsuA
 
 media_folder: images/uploads
 public_folder: /images/uploads

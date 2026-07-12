@@ -15,25 +15,20 @@ You only do this section once. Total time: about 15 minutes.
 Three ideas explain everything else in this guide:
 
 1. **The website's files live on GitHub** (the repository `brentbreeden79/WIA`). GitHub is the source of truth.
-2. **Netlify watches ONE branch of that repository** — normally `main`. Whenever anything new lands on that branch, Netlify automatically copies the files and publishes them. This is called a *deploy*.
-3. **You never upload files to Netlify by hand.** To change the live site you change what's on the watched branch — either by merging a pull request on GitHub, or by publishing content through the `/admin` panel (which saves to GitHub for you). Netlify notices within seconds and redeploys.
+2. **Netlify watches ONE branch of that repository.** For this repo that branch is **`claude/ecstatic-brown-RGsuA`** — it's the only branch, and Netlify deploys it directly. Whenever anything new lands on it, Netlify automatically copies the files and publishes them. This is called a *deploy*.
+3. **You never upload files to Netlify by hand.** To change the live site you change what's on the watched branch — pushed by a developer, or published through the `/admin` panel (which saves to GitHub for you). Netlify notices within seconds and redeploys.
 
-So the flow is always: **change lands on `main` → Netlify deploys → live site updates (~1 minute).**
+So the flow is always: **change lands on the watched branch → Netlify deploys → live site updates (~1 minute).**
 
 Each deploy either succeeds (**Published**, green) or fails (**Failed**, red) — and if it fails, the previous good version stays live. You can watch every deploy under the **Deploys** tab of your Netlify dashboard, and click any deploy to read its log. That log is where the error message lives when something goes wrong.
 
 > **Heads up on wording:** Netlify recently renamed "Sites" to "Projects" in parts of its dashboard. If a button says **Project** where this guide says **Site** (or vice versa), it's the same thing.
 
-## Step 1 — Get the website code onto `main`
+## Step 1 — Know which branch is being published
 
-The finished website currently lives on the branch `claude/ecstatic-brown-RGsuA`. Netlify will publish `main`, so merge the branch into it:
+This repository has a single branch, **`claude/ecstatic-brown-RGsuA`**, and Netlify publishes it directly. There is nothing to merge — every change pushed to that branch (including content published via `/admin`) goes live automatically.
 
-1. Go to `https://github.com/brentbreeden79/WIA`
-2. Click **Pull requests** → **New pull request**
-3. Set **base:** `main` and **compare:** `claude/ecstatic-brown-RGsuA`
-4. Click **Create pull request**, then **Merge pull request** → **Confirm merge**
-
-> **Do this again whenever the branch gets new fixes.** If a fix is pushed to `claude/ecstatic-brown-RGsuA` after you've already merged once, the live site won't have it until you open and merge a new pull request. Merging automatically triggers a fresh deploy — there's no separate "redeploy" step to remember.
+You can confirm which branch Netlify watches under **Site configuration → Build & deploy → Continuous deployment → Branches → Production branch**. It should say `claude/ecstatic-brown-RGsuA`. If it ever shows a different branch, deploys will silently stop matching your changes — set it back.
 
 ## Step 2 — Create the Netlify account and connect the repository
 
@@ -47,7 +42,7 @@ The finished website currently lives on the branch `claude/ecstatic-brown-RGsuA`
 
    | Setting | Value | Why |
    |---|---|---|
-   | **Branch to deploy** | `main` | The branch Netlify watches |
+   | **Branch to deploy** | `claude/ecstatic-brown-RGsuA` | The repo's only branch (Netlify pre-selects it) |
    | **Build command** | *leave empty* | No build step — the files are served as-is |
    | **Publish directory** | `.` *(a single period)* | Publish the whole repository folder |
 
@@ -67,7 +62,7 @@ Invalid filename 'data/#HonorTheWASP ... .csv'.
 Deployed filenames cannot contain # or ? characters
 ```
 
-— a file with a `#` in its name, which Netlify refuses. (That file has since been removed; if you see this error, make sure `main` has the latest code — see Step 1.) After fixing a problem on GitHub, the merge triggers a new deploy automatically. You can also force one anytime with **Deploys → Trigger deploy → Deploy site**.
+— a file with a `#` in its name, which Netlify refuses. (That file has since been removed from the repository.) After a problem is fixed on GitHub, the push triggers a new deploy automatically. You can also force one anytime with **Deploys → Trigger deploy → Deploy site**.
 
 > **Give the site a nicer address:** **Site configuration → Site details → Change site name** → pick something like `wai-crc`, making the address `wai-crc.netlify.app`.
 
@@ -206,8 +201,14 @@ Give it a minute — Netlify rebuilds after every publish. Then hard-refresh the
 **A deploy shows "Failed" in the Deploys tab.**
 Click the failed deploy and scroll to the end of the log — the actual error is in the last few lines (for example, a file with a `#` or `?` in its name, which Netlify doesn't allow). Fix the cause on GitHub and the next merge deploys automatically. The live site keeps showing the last successful deploy in the meantime, so a failed deploy never takes the site down.
 
-**I merged a fix on GitHub but the live site didn't change.**
-Check the **Deploys** tab: if no new deploy appeared, the change probably landed on a different branch than the one Netlify watches (see **Site configuration → Build & deploy → Continuous deployment → Branches**, normally `main`). Merge the fix into that branch and a deploy will start on its own.
+**A fix was pushed to GitHub but the live site didn't change.**
+Check the **Deploys** tab: if no new deploy appeared, the change probably landed on a different branch than the one Netlify watches (see **Site configuration → Build & deploy → Continuous deployment → Branches** — for this repo it should be `claude/ecstatic-brown-RGsuA`). Get the fix onto that branch and a deploy will start on its own.
+
+**The /admin panel shows an error.**
+The three usual causes, in order of likelihood:
+1. **Identity isn't enabled** — the login screen fails or never appears. Fix: Part 1, Step 4.
+2. **Git Gateway isn't enabled** — you can log in, but it errors when loading or saving content. Fix: Part 1, Step 4 (the Services section).
+3. **Branch mismatch** — `admin/config.yml` names a branch that doesn't match the deployed branch. The file in this repo is already set to `claude/ecstatic-brown-RGsuA`; if the production branch ever changes, update the `branch:` line to match.
 
 **I can't log in to /admin.**
 Make sure you accepted the invitation email and set a password. If the invite expired, have an existing admin send a new one from **Identity → Invite users**. Also confirm **Git Gateway** is still enabled under Identity → Services.
