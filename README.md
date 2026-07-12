@@ -81,7 +81,7 @@ The content editor uses **Netlify Identity** for login and **Git Gateway** to sa
 ### Step 4 — Invite yourself as an admin
 
 1. Still in the Identity section, click **"Invite users"**
-2. Enter your email address (`capitalregionwai@gmail.com` or personal) and click **"Send"**
+2. Enter your email address (`info@wai-crc.org` or personal) and click **"Send"**
 3. Check your email for an invitation link — click it and set a password
 4. You can repeat this to invite other editors (e.g., chapter board members who will post news)
 
@@ -112,7 +112,7 @@ Forms are detected by Netlify on first deployment. No extra configuration is nee
 2. Click **"Forms"** in the left sidebar
 3. After the first real form submission, the forms (`volunteer-form`, `donate-form`) will appear here
 4. Click **"Form notifications"** → **"Add notification"** → **"Email notification"**
-5. Enter `capitalregionwai@gmail.com` as the email address
+5. Enter `info@wai-crc.org` as the email address
 6. Click **"Save"**
 
 Every future submission will be emailed to that address immediately.

@@ -48,7 +48,7 @@ The admin panel at `/admin` is how you'll edit the site. It needs two switches f
 
 1. Go to the **Identity** tab of your site
 2. Click **Invite users**
-3. Enter your email (e.g. `capitalregionwai@gmail.com`) and click **Send**
+3. Enter your email (e.g. `info@wai-crc.org`) and click **Send**
 4. Open the invitation email and click **Accept the invite** — it opens the site; set a password when prompted
 5. Repeat for any board member who should be able to post news or events
 
@@ -59,7 +59,7 @@ The Contact/Volunteer form stores submissions in Netlify and can email them to y
 1. In your site's dashboard, click **Forms** in the left menu
 2. Click **Enable form detection** if prompted, then redeploy the site (Deploys → Trigger deploy)
 3. After the first submission arrives, click **Form notifications** → **Add notification** → **Email notification**
-4. Enter `capitalregionwai@gmail.com` and save
+4. Enter `info@wai-crc.org` and save
 
 > The free plan includes 100 form submissions per month — plenty for a chapter site.
 
