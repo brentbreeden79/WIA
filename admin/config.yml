@@ -15,59 +15,63 @@ collections:
   # ── NEWS & ANNOUNCEMENTS ──────────────────────────────────────
   - name: news
     label: News & Announcements
-    label_singular: Post
     description: >
       Add, edit, or delete news posts and announcements.
       Changes appear on the News page automatically.
-    file: data/news.json
-    fields:
-      - name: items
-        label: Posts
-        widget: list
-        summary: "{{fields.title}} ({{fields.date}})"
+    files:
+      - name: news_list
+        label: All News Posts
+        file: data/news.json
         fields:
-          - { name: id,       label: "ID (no spaces, e.g. my-post-title)", widget: string }
-          - { name: title,    label: Title,    widget: string }
-          - { name: date,     label: Date,     widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
-          - name: category
-            label: Category
-            widget: select
-            options: [Announcement, Event Recap, Scholarships, Aviation News, Member Spotlight]
-          - { name: author,   label: Author,   widget: string,   default: "WAI-CRC Staff" }
-          - { name: excerpt,  label: "Short Excerpt (shown in cards)", widget: text }
-          - name: image
-            label: "Featured Image (optional)"
-            widget: image
-            required: false
-            hint: "Upload a photo to display at the top of this post."
-            media_folder: /images/uploads
-            public_folder: /images/uploads
-          - { name: body,     label: "Full Article Body (Markdown supported)", widget: markdown }
+          - name: items
+            label: Posts
+            label_singular: Post
+            widget: list
+            summary: "{{fields.title}} ({{fields.date}})"
+            fields:
+              - { name: id,       label: "ID (no spaces, e.g. my-post-title)", widget: string }
+              - { name: title,    label: Title,    widget: string }
+              - { name: date,     label: Date,     widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+              - name: category
+                label: Category
+                widget: select
+                options: [Announcement, Event Recap, Scholarships, Aviation News, Member Spotlight]
+              - { name: author,   label: Author,   widget: string,   default: "WAI-CRC Staff" }
+              - { name: excerpt,  label: "Short Excerpt (shown in cards)", widget: text }
+              - name: image
+                label: "Featured Image (optional)"
+                widget: image
+                required: false
+                hint: "Upload a photo to display at the top of this post."
+              - { name: body,     label: "Full Article Body (Markdown supported)", widget: markdown }
 
   # ── EVENTS ───────────────────────────────────────────────────
   - name: events
     label: Events
-    label_singular: Event
     description: >
       Manage upcoming chapter events. These appear on the News page
       sidebar and on the Home page. Dates should be in YYYY-MM-DD format.
-    file: data/events.json
-    fields:
-      - name: items
-        label: Events
-        widget: list
-        summary: "{{fields.title}} — {{fields.date}}"
+    files:
+      - name: events_list
+        label: All Events
+        file: data/events.json
         fields:
-          - { name: id,          label: "ID (no spaces)",    widget: string }
-          - { name: title,       label: Event Title,         widget: string }
-          - { name: date,        label: Date,                widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
-          - { name: time,        label: "Time (e.g. 6:30 PM)", widget: string }
-          - { name: location,    label: Location,            widget: string }
-          - { name: description, label: Description,         widget: text }
-          - name: type
-            label: Event Type
-            widget: select
-            options: [Meeting, Special Event, Fly-In, Airshow, Webinar, Other]
+          - name: items
+            label: Events
+            label_singular: Event
+            widget: list
+            summary: "{{fields.title}} — {{fields.date}}"
+            fields:
+              - { name: id,          label: "ID (no spaces)",    widget: string }
+              - { name: title,       label: Event Title,         widget: string }
+              - { name: date,        label: Date,                widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+              - { name: time,        label: "Time (e.g. 6:30 PM)", widget: string }
+              - { name: location,    label: Location,            widget: string }
+              - { name: description, label: Description,         widget: text }
+              - name: type
+                label: Event Type
+                widget: select
+                options: [Meeting, Special Event, Fly-In, Airshow, Webinar, Other]
 
   # ── SITE SETTINGS ─────────────────────────────────────────────
   - name: settings
