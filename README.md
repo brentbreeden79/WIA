@@ -2,6 +2,8 @@
 
 Website for the Women In Aviation International Capital Region Chapter (WAI-CRC), serving the Northern Virginia and greater Washington D.C. area.
 
+> **📘 New here?** See **[NETLIFY-GUIDE.md](NETLIFY-GUIDE.md)** — a plain-English walkthrough for deploying the site to Netlify and managing content (events, news posts, photos) day-to-day.
+
 ---
 
 ## Pages
