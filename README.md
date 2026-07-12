@@ -8,9 +8,9 @@ Website for the Women In Aviation International Capital Region Chapter (WAI-CRC)
 
 | File | Page | Description |
 |---|---|---|
-| `index.html` | Home | Hero, programs, upcoming events, Geneva CTA |
+| `index.html` | Home | Hero, programs, upcoming events, membership CTA |
 | `about.html` | About Us | Mission, values, leadership, chapter timeline |
-| `get-involved.html` | Get Involved | Membership info, how to join, Geneva onboarding |
+| `get-involved.html` | Get Involved | Membership info, how to join, dues payment |
 | `news.html` | News & Events | News feed, Google Calendar embed, events sidebar |
 | `volunteer-form.html` | Contact & Volunteer | Contact form, volunteer sign-up, FAQ |
 | `donate.html` | Girls in Aviation Day | GIAD info, donation form, fundraising progress |
