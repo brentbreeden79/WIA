@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GIRLS IN AVIATION DAY | WAI Capital Region Chapter</title>
   <meta name="description" content="Support Girls in Aviation Day and the WAI Capital Region Chapter's mission to inspire the next generation of female aviators.">
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+  <link rel="apple-touch-icon" href="images/favicon-192.png">
   <link rel="stylesheet" href="css/styles.css">
   <style>
     .giad-hero {
@@ -274,30 +276,16 @@
       <!-- Sidebar -->
       <div class="donate-sidebar">
         <div class="form-card fade-in" style="margin-bottom:1.5rem;">
-          <div class="section-label">2025 Fundraising Goal</div>
+          <div class="section-label">Fundraising Goal</div>
           <div style="margin:0.75rem 0;">
             <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
-              <span style="font-weight:600; color:var(--navy-dark);">$2,340 raised</span>
-              <span style="color:var(--gray-400);">Goal: $5,000</span>
+              <span style="font-weight:600; color:var(--navy-dark);" id="goal-raised">$0 raised</span>
+              <span style="color:var(--gray-400);" id="goal-target">Goal: —</span>
             </div>
             <div class="progress-bar-wrap">
               <div class="progress-bar-fill" id="progress-fill" style="width:0"></div>
             </div>
-            <p style="font-size:0.82rem; color:var(--gray-400); margin:0.25rem 0 0;">47% of our goal — help us get there!</p>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.25rem;">
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
-              <span style="color:var(--gray-600);">Participants supported</span>
-              <strong style="color:var(--navy);">~120</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
-              <span style="color:var(--gray-600);">Donors this year</span>
-              <strong style="color:var(--navy);">34</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
-              <span style="color:var(--gray-600);">Average donation</span>
-              <strong style="color:var(--navy);">$68.82</strong>
-            </div>
+            <p style="font-size:0.82rem; color:var(--gray-400); margin:0.25rem 0 0;" id="goal-percent">Help us reach our Girls in Aviation Day goal!</p>
           </div>
         </div>
 
@@ -374,7 +362,7 @@
   </div>
   <div class="container">
     <div class="footer-bottom">
-      <span>&copy; 2025 WAI Capital Region Chapter. All rights reserved.</span>
+      <span>&copy; <span class="copyright-year">2026</span> WAI Capital Region Chapter. All rights reserved.</span>
       <span>A chapter of <a href="https://www.wai.org" target="_blank" rel="noopener" style="color:var(--gold-light);">Women In Aviation International</a></span>
     </div>
   </div>
@@ -423,13 +411,23 @@
 
   customInput.addEventListener('input', () => updatePayPalBtn(customInput.value));
 
-  // Animate progress bar on load
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const fill = document.getElementById('progress-fill');
-      if (fill) fill.style.width = '47%';
-    }, 400);
-  });
+  // Fundraising progress — pulled from data/settings.json (editable in /admin)
+  fetch('data/settings.json')
+    .then(r => r.json())
+    .then(s => {
+      const raised = Number(s.giad_raised) || 0;
+      const goal = Number(s.giad_goal) || 0;
+      document.getElementById('goal-raised').textContent = '$' + raised.toLocaleString() + ' raised';
+      if (goal > 0) {
+        const pct = Math.min(100, Math.round((raised / goal) * 100));
+        document.getElementById('goal-target').textContent = 'Goal: $' + goal.toLocaleString();
+        document.getElementById('goal-percent').textContent = pct + '% of our goal — help us get there!';
+        setTimeout(() => {
+          document.getElementById('progress-fill').style.width = pct + '%';
+        }, 400);
+      }
+    })
+    .catch(() => {});
 
   // Set initial PayPal link ($25 default)
   updatePayPalBtn(25);

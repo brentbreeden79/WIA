@@ -125,3 +125,8 @@ fetch('data/settings.json')
     });
   })
   .catch(() => {}); // silently ignore if settings not available
+
+// Keep the footer copyright year current
+document.querySelectorAll('.copyright-year').forEach(el => {
+  el.textContent = new Date().getFullYear();
+});

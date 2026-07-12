@@ -1,45 +1,36 @@
 {
   "items": [
     {
-      "id": "june-meeting-2025",
+      "id": "meeting-2026-08",
       "title": "Monthly Chapter Meeting",
-      "date": "2025-06-14",
-      "time": "6:30 PM",
-      "location": "Northern VA (details emailed to members)",
-      "description": "Join us for our regular chapter gathering — news, updates, and great aviation conversation.",
-      "type": "Meeting"
-    },
-    {
-      "id": "giad-2025-event",
-      "title": "Girls in Aviation Day",
-      "date": "2025-07-19",
-      "time": "All Day",
-      "location": "TBD",
-      "description": "Annual event inspiring young women to pursue careers in aviation. Volunteers needed!",
-      "type": "Special Event"
-    },
-    {
-      "id": "flyin-aug-2025",
-      "title": "Airport Fly-In Meetup",
-      "date": "2025-08-09",
-      "time": "10:00 AM",
-      "location": "Local General Aviation Airport",
-      "description": "Casual fly-in and hangar tour at a local general aviation airport. All welcome.",
-      "type": "Fly-In"
-    },
-    {
-      "id": "sep-meeting-2025",
-      "title": "Monthly Chapter Meeting",
-      "date": "2025-09-13",
+      "date": "2026-08-08",
       "time": "6:30 PM",
       "location": "Northern VA (details emailed to members)",
       "description": "Monthly chapter meeting — all members welcome.",
       "type": "Meeting"
     },
     {
-      "id": "oct-meeting-2025",
+      "id": "meeting-2026-09",
       "title": "Monthly Chapter Meeting",
-      "date": "2025-10-11",
+      "date": "2026-09-12",
+      "time": "6:30 PM",
+      "location": "Northern VA (details emailed to members)",
+      "description": "Monthly chapter meeting — all members welcome.",
+      "type": "Meeting"
+    },
+    {
+      "id": "meeting-2026-10",
+      "title": "Monthly Chapter Meeting",
+      "date": "2026-10-10",
+      "time": "6:30 PM",
+      "location": "Northern VA (details emailed to members)",
+      "description": "Monthly chapter meeting — all members welcome.",
+      "type": "Meeting"
+    },
+    {
+      "id": "meeting-2026-11",
+      "title": "Monthly Chapter Meeting",
+      "date": "2026-11-14",
       "time": "6:30 PM",
       "location": "Northern VA (details emailed to members)",
       "description": "Monthly chapter meeting — all members welcome.",
