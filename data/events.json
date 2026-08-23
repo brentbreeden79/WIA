@@ -1,40 +1,13 @@
 {
   "items": [
     {
-      "id": "meeting-2026-08",
-      "title": "Monthly Chapter Meeting",
-      "date": "2026-08-08",
-      "time": "6:30 PM",
-      "location": "Northern VA (details emailed to members)",
-      "description": "Monthly chapter meeting — all members welcome.",
-      "type": "Meeting"
-    },
-    {
-      "id": "meeting-2026-09",
-      "title": "Monthly Chapter Meeting",
-      "date": "2026-09-12",
-      "time": "6:30 PM",
-      "location": "Northern VA (details emailed to members)",
-      "description": "Monthly chapter meeting — all members welcome.",
-      "type": "Meeting"
-    },
-    {
-      "id": "meeting-2026-10",
-      "title": "Monthly Chapter Meeting",
-      "date": "2026-10-10",
-      "time": "6:30 PM",
-      "location": "Northern VA (details emailed to members)",
-      "description": "Monthly chapter meeting — all members welcome.",
-      "type": "Meeting"
-    },
-    {
-      "id": "meeting-2026-11",
-      "title": "Monthly Chapter Meeting",
-      "date": "2026-11-14",
-      "time": "6:30 PM",
-      "location": "Northern VA (details emailed to members)",
-      "description": "Monthly chapter meeting — all members welcome.",
-      "type": "Meeting"
+      "title": "GIAD",
+      "date": "2026-09-19",
+      "location": "Winchester Airport",
+      "type": "Meeting",
+      "id": "1",
+      "time": "1200 - 1700",
+      "description": "Come by the booth for Girls in Aviation Day!!"
     }
   ]
 }
