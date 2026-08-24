@@ -1,14 +1,14 @@
 {
   "site_title": "WAI Capital Region Chapter",
-  "tagline": "Women In Aviation International — Northern Virginia",
-  "contact_email": "info@wai-crc.org",
-  "google_calendar_id": "YOUR_GOOGLE_CALENDAR_ID@group.calendar.google.com",
-  "facebook_url": "https://www.facebook.com/waicrc/",
   "instagram_url": "https://www.instagram.com/capitalwai/",
-  "youtube_url": "https://www.youtube.com/channel/UCi4KiBKctY29y1ogQufaXXA",
   "twitter_url": "https://x.com/WomenInAviation?lang=en",
   "giad_goal": 5000,
-  "giad_raised": 2340,
+  "tagline": "Women In Aviation International — Northern Virginia",
   "chapter_dues": 15,
-  "meeting_schedule": "Second Saturday of each month at 6:30 PM"
+  "giad_raised": 2340,
+  "youtube_url": "https://www.youtube.com/channel/UCi4KiBKctY29y1ogQufaXXA",
+  "facebook_url": "https://www.facebook.com/waicrc/",
+  "google_calendar_id": "capitalregionwai@gmail.com",
+  "meeting_schedule": "Second Saturday of each month at 6:30 PM",
+  "contact_email": "info@wai-crc.org"
 }
