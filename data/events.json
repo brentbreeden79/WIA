@@ -8,6 +8,24 @@
       "id": "1",
       "time": "1",
       "description": "Come by the booth for Girls in Aviation Day!!"
+    },
+    {
+      "id": "2",
+      "title": "GIAD - College Park",
+      "date": "2026-10-10",
+      "time": "11AM - 2 PM",
+      "location": "College Park Airport",
+      "type": "Special Event",
+      "description": "Come by the booth for Girls in Aviation Day!!"
+    },
+    {
+      "id": "3",
+      "title": "GIAD - DCA",
+      "date": "2026-10-14",
+      "time": "10AM - 12PM",
+      "location": "DCA",
+      "description": "Come by the booth for Girls in Aviation Day!!",
+      "type": "Special Event"
     }
   ]
 }
